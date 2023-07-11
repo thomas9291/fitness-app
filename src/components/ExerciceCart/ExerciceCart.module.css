@@ -1,0 +1,18 @@
+.containerCart {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 30%;
+  height: 30%;
+  justify-content: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  align-items: center;
+  box-shadow: 10px 5px 5px grey;
+}
+.image {
+  width: 90%;
+  height: 90%;
+  border-radius: 1rem;
+}

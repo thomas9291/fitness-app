@@ -21,7 +21,7 @@ const BodyComposition = ({ name, muscles }) => {
   }, []);
 
   return (
-    <div className={classes.container}>
+    <div /* className={classes.container} */ className="d-block w-100">
       <Model
         /* type={{ values: "anterior" }} */
         data={data}
