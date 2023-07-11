@@ -1,23 +1,16 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-import BodyComposition from "@/components/BodyComposition/BodyComposition";
-import BodyCompositionPosterior from "@/components/BodyComposition/BodyCompositionPosterior";
+import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 
 export default function HomePage() {
   const { data: session } = useSession();
+
   if (session) {
     return (
-      <div className="containerBodySchema">
-        <BodyComposition
-          name={"benche presse"}
-          muscles={["chest", "triceps", "front-deltoids"]}
-        />
-        <BodyCompositionPosterior
-          name={"benche presse"}
-          muscles={["chest", "triceps", "front-deltoids"]}
-        />
-      </div>
+      <>
+        <ExerciceCart />
+      </>
     );
   }
   return (
