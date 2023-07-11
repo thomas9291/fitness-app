@@ -2,7 +2,7 @@ import React from "react";
 import Model from "react-body-highlighter";
 import classes from "./BodyComposition.module.css";
 
-const BodyComposition = ({ name, muscles }) => {
+const BodyCompositionPosterior = ({ name, muscles }) => {
   const data = [
     {
       name: /* "Bench Press" */ name,
@@ -23,7 +23,7 @@ const BodyComposition = ({ name, muscles }) => {
   return (
     <div className={classes.container}>
       <Model
-        /* type={{ values: "anterior" }} */
+        type={{ values: "anterior" }}
         data={data}
         onClick={handleClick}
         style={{ width: "10rem", height: "10rem", margin: "1rem " }}
@@ -32,4 +32,4 @@ const BodyComposition = ({ name, muscles }) => {
   );
 };
 
-export default BodyComposition;
+export default BodyCompositionPosterior;
