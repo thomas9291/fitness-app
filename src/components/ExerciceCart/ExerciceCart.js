@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import classes from "./ExerciceCart.module.css";
 import BodyComposition from "../BodyComposition/BodyComposition";
 import BodyCompositionPosterior from "../BodyComposition/BodyCompositionPosterior";
+/* import AddForm from "../AddForm/AddForm"; */
 
-export default function ExerciceCart() {
+export default function ExerciceCart({ onSubmit }) {
   const [hideBody, setHideBody] = useState(false);
+  /* const [hideInputs, setHideInputs] = useState(false); */
   const handlerBodyComposition = () => {
     setHideBody(!hideBody);
   };
+  /*   const handlerInputs = () => {
+    setHideInputs(!hideInputs);
+  }; */
+
   return (
     <div className={classes.containerCart}>
       <h4>name</h4>
@@ -19,6 +25,10 @@ export default function ExerciceCart() {
       <p>type</p>
       <p>muscle</p>
       <p>difficulty</p>
+      {/*  <button className="btn btn-info m-2" onClick={handlerInputs}>
+        {hideInputs ? "hide" : "result"}
+      </button> */}
+      {/* {hideInputs && <AddForm onSubmit={onSubmit} />} */}
       <button onClick={handlerBodyComposition} className="btn btn-info m-2">
         Show Body
       </button>

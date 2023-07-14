@@ -6,10 +6,20 @@ import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 export default function HomePage() {
   const { data: session } = useSession();
 
+  async function AddResultCart(result) {
+    await fetch("/api/exercices", {
+      method: "POST",
+      body: JSON.stringify(result),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   if (session) {
     return (
       <>
-        <ExerciceCart />
+        <ExerciceCart onSubmit={AddResultCart} />
       </>
     );
   }
