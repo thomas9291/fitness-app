@@ -1,7 +1,7 @@
-import multer from "multer";
+/* import multer from "multer";
 import { handleUpload } from "../../../../helper";
 
-import Exercice from "../../../db/models/exercice";
+import Exercice from "../../../../db/models/exercice";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -50,3 +50,4 @@ export const config = {
     bodyParser: false,
   },
 };
+ */

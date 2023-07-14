@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   name: { type: String, required: false },
   email: { type: String, required: true },
-  userType: { type: String, default: "user" },
+  role: { type: String, default: "user" },
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
