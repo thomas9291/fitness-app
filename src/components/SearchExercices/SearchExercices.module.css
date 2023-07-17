@@ -13,6 +13,10 @@
 }
 .formContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
   margin: 1rem;
+  align-items: flex-start;
 }
