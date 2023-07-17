@@ -1,0 +1,18 @@
+.cartContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media screen and (max-width: 410px) {
+  .cartContainer {
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+}
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
