@@ -5,7 +5,7 @@ import BodyCompositionPosterior from "../BodyComposition/BodyCompositionPosterio
 /* import AddForm from "../AddForm/AddForm"; */
 
 export default function ExerciceCart({
-  onSubmit,
+  onClick,
   name,
   type,
   muscle,
@@ -61,6 +61,9 @@ export default function ExerciceCart({
           />
         </div>
       )}
+      <button className="btn btn-success" onClick={onClick}>
+        Add to my training
+      </button>
     </div>
   );
 }

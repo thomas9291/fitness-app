@@ -16,6 +16,7 @@ export const authOptions = {
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
+  //every user have a private session conected with the id
   callbacks: {
     async session({ session, user }) {
       session.user._id = user.id;

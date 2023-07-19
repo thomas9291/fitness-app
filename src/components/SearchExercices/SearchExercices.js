@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import classes from "./SearchExercices.module.css";
 import ExerciceCart from "../ExerciceCart/ExerciceCart";
+import { uid } from "uid";
 
 export default function SearchExercices() {
+  //I create the hook in order to have access to the return state outside the function.
   const [resultData, setResultData] = useState(null);
   const [hideForm, setHideForm] = useState(false);
   async function searchHandler(event) {
@@ -21,16 +23,15 @@ export default function SearchExercices() {
       throw new Error("Error fetching data from API");
     }
     const resultData = await response.json();
-
+    //thanks to this hook I can now work with the value of the inputs in the return state
     setResultData(resultData);
-    console.log("exercices resultat:", resultData);
-
     event.target.reset();
   }
   const handlerForm = () => {
     setHideForm(!hideForm);
   };
-
+  const id = uid();
+  async function handelerPostNewExercice(event) {}
   return (
     <>
       <button
@@ -41,12 +42,6 @@ export default function SearchExercices() {
       </button>
       {hideForm && (
         <form onSubmit={searchHandler} className={classes.formContainer}>
-          {/* <input
-          type="text"
-          id="searchMuscle"
-          name="searchMuscle"
-          placeholder="search a muscle"
-        /> */}
           <label htmlFor="searchMuscle">Choose a muscle:</label>
 
           <select name="searchMuscle" id="muscle-select">
@@ -89,9 +84,9 @@ export default function SearchExercices() {
       )}
       <div className={classes.cartContainer}>
         {resultData &&
-          resultData.map((elements, index) => (
+          resultData.map((elements) => (
             <ExerciceCart
-              key={index}
+              key={id}
               name={elements.name}
               type={elements.type}
               muscle={elements.muscle}
