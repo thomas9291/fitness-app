@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import classes from "./AddForm.module.css";
 
 export default function AddForm({ onSubmit }) {
@@ -26,3 +26,4 @@ export default function AddForm({ onSubmit }) {
     </form>
   );
 }
+ */
