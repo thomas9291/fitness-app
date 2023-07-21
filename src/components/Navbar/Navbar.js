@@ -31,9 +31,9 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/Create">
+              <Link className="nav-link" href="/Create">
                 Create exercice
-              </a>
+              </Link>
             </li>
             {/*   <li className="nav-item dropdown">
               <a
