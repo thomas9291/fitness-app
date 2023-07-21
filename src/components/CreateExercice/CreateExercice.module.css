@@ -1,0 +1,48 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.infoMuscleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.divItemsInfoMuscle {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  width: 40%;
+  justify-content: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  align-items: center;
+  box-shadow: 10px 5px 5px grey;
+}
+.equipmentInfoContainer,
+.typeInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 700px) {
+  .divItemsInfoMuscle {
+    width: 30%;
+  }
+  .formContainer {
+    width: 50%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 410px) {
+  .divItemsInfoMuscle {
+    width: 90%;
+  }
+  .formContainer {
+    width: 90%;
+  }
+}
