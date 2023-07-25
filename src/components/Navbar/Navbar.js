@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Navbar() {
+export default function Navbar({ onClick }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -34,6 +34,11 @@ export default function Navbar() {
               <Link className="nav-link" href="/Create">
                 Create exercice
               </Link>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link signout" onClick={onClick}>
+                Sign out
+              </button>
             </li>
             {/*   <li className="nav-item dropdown">
               <a

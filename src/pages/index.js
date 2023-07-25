@@ -1,5 +1,6 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Navbar from "@/components/Navbar/Navbar";
 
 export default function HomePage() {
   const { data: session } = useSession();
@@ -7,6 +8,7 @@ export default function HomePage() {
   if (session) {
     return (
       <>
+        <Navbar onClick={() => signOut()} />
         <h1>hello home</h1>
         {/* <ExerciceCart onSubmit={AddResultCart} /> */}
       </>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import classes from "./CreateExercice.module.css";
+import Navbar from "../Navbar/Navbar";
 
-export default function CreateExercice() {
+export default function CreateExercice({ onSubmit }) {
   const [hideMuscleInfo, setHideMuscleInfo] = useState(false);
   const [hideEquimentInfo, setHideEquimentInfo] = useState(false);
   const [hideTypeInfo, SethideTypeInfo] = useState(false);
@@ -19,7 +20,9 @@ export default function CreateExercice() {
     const formData = new FormData(event.target);
 
     const data = Object.fromEntries(formData);
-    console.log("data from create exercice form:", data);
+    console.log("data from form exercice:", data);
+    onSubmit(data);
+    event.target.reset();
   }
   return (
     <>
