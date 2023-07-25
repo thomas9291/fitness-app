@@ -21,3 +21,11 @@ body {
 .containerBodySchema {
   text-align: center;
 }
+.searchExercicesDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+}

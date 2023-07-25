@@ -18,7 +18,7 @@ export default function Create() {
       },
     });
     if (response.ok) {
-      push("/");
+      push("/SearchExercice");
     } else {
       console.error(response.status);
     }
