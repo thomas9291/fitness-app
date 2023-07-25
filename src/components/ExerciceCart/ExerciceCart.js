@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./ExerciceCart.module.css";
-import BodyComposition from "../BodyComposition/BodyComposition";
-import BodyCompositionPosterior from "../BodyComposition/BodyCompositionPosterior";
+
 /* import AddForm from "../AddForm/AddForm"; */
 
 export default function ExerciceCart({
@@ -10,12 +9,8 @@ export default function ExerciceCart({
   type,
   muscle,
   equipment,
+  onHandlerBodyComposition,
 }) {
-  const [hideBody, setHideBody] = useState(false);
-  const handlerBodyComposition = () => {
-    setHideBody(!hideBody);
-  };
-
   return (
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
@@ -28,16 +23,6 @@ export default function ExerciceCart({
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
 
-      <button onClick={handlerBodyComposition} className="btn btn-info m-2">
-        Show Body
-      </button>
-      {hideBody && (
-        <div>
-          <BodyComposition name={name} muscles={[{ muscle }]} />
-
-          <BodyCompositionPosterior name={name} muscles={[{ muscle }]} />
-        </div>
-      )}
       <button className="btn btn-success" onClick={onClick}>
         Add to my training
       </button>
