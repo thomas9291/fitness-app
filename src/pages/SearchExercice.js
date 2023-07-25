@@ -1,11 +1,17 @@
 import React from "react";
 
 import { useSession, signIn, signOut } from "next-auth/react";
+import Navbar from "@/components/Navbar/Navbar";
 
 export default function SearchExercice() {
   const { data: session } = useSession();
   if (session) {
-    return <h2>search exercices</h2>;
+    return (
+      <>
+        <Navbar onClick={() => signOut} />
+        <h2>search exercices</h2>
+      </>
+    );
   }
   return (
     <>
