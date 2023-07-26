@@ -5,11 +5,14 @@ import Head from "next/head";
 
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
+import { useState } from "react";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
+  const [trainingAdded, setTrainingAdded] = useState([]);
+
   return (
     <>
       <Head>
@@ -39,7 +42,11 @@ export default function App({
             },
           }}
         >
-          <Component {...pageProps} />
+          <Component
+            {...pageProps}
+            trainingAdded={trainingAdded}
+            setTrainingAdded={setTrainingAdded}
+          />
         </SWRConfig>
       </SessionProvider>
     </>

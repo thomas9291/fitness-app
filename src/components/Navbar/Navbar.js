@@ -36,6 +36,11 @@ export default function Navbar({ onClick }) {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link" href="/Plan">
+                Training plan
+              </Link>
+            </li>
+            <li className="nav-item">
               <button className="nav-link signout" onClick={onClick}>
                 Sign out
               </button>

@@ -9,7 +9,6 @@ export default function ExerciceCart({
   type,
   muscle,
   equipment,
-  onHandlerBodyComposition,
 }) {
   return (
     <div className={classes.containerCart}>
