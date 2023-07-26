@@ -1,4 +1,4 @@
-/* import mongoose from "mongoose";
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const inputSchema = new Schema({
@@ -16,4 +16,3 @@ const inputSchema = new Schema({
 const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
 
 export default Input;
- */
