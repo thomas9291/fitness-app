@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import Navbar from "@/components/Navbar/Navbar";
 import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 
-export default function SearchExercice() {
+export default function SearchExercice({ setTrainingAdded }) {
   const { data: session } = useSession();
+  const router = useRouter();
   const { data: exercicesList } = useSWR("/api/exercices", {
     fallbackData: [],
   });
-
-  const handlerAddTraining = () => {
-    console.log("clicked...");
+  const { push } = router;
+  const handlerAddTraining = (id) => {
+    const filteredId = exercicesList.filter((element) => element._id === id);
+    setTrainingAdded(filteredId);
+    push("/Plan");
   };
 
   if (session) {
@@ -31,7 +35,7 @@ export default function SearchExercice() {
                     type={type}
                     muscle={muscle}
                     equipment={equipment}
-                    onClick={handlerAddTraining}
+                    onClick={() => handlerAddTraining(_id)}
                   />
                 </div>
               );
