@@ -1,6 +1,7 @@
 import React from "react";
 
 import Navbar from "@/components/Navbar/Navbar";
+import Link from "next/link";
 import AddedCart from "@/components/AddedCart/AddedCart";
 
 export default function Plan({ trainingAdded, setTrainingAdded }) {
@@ -8,22 +9,12 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
   const handlerDelete = (id) => {
     const deleteId = trainingAdded.filter((element) => element._id !== id);
     setTrainingAdded(deleteId);
+    push("/Plan");
   };
-  /* async function addInput(exercice) {
-    const response = await fetch("/api/exercices", {
-      method: "POST",
-      body: JSON.stringify(exercice),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      push("/SearchExercice");
-    } else {
-      console.error(response.status);
-    }
-  } */
-
+  /* const addInput = (newData) => {
+    setTrainingAdded([...trainingAdded, { ...newData, id: uid() }]);
+  }; */
+  console.log("training added state from plan.js:", trainingAdded);
   return (
     <>
       <Navbar />
@@ -38,6 +29,15 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                 muscle={muscle}
                 equipment={equipment}
                 onClick={() => handlerDelete(_id)}
+                /* onSubmit={addInput} */
+                linkedId={
+                  <Link
+                    className="text-white text-decoration-none"
+                    href={`/exerciceInput/${_id}`}
+                  >
+                    Add result
+                  </Link>
+                }
               />
             </div>
           );
