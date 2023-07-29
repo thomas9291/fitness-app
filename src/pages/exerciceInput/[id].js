@@ -3,24 +3,24 @@ import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import { useSession, signIn, signOut } from "next-auth/react";
 import InputCart from "@/components/InputCart/InputCart";
-import useSWR from "swr";
 
 export default function DetaillPage() {
   const router = useRouter();
   const { id } = router.query;
   const { data: session } = useSession();
-  const { data: exercice } = useSWR(`/api/exercices/${id}`);
+  /* const { data: exercice } = useSWR(`/api/exercices/${id}`); */
 
   async function addExerciceInput(exerciceInput) {
-    const response = await fetch(`/api/exercices${id}`, {
+    const response = await fetch(`/api/inputs?id=${id}`, {
       method: "POST",
       body: JSON.stringify(exerciceInput),
       headers: {
         "Content-Type": "application/json",
       },
     });
+    console.log("put response from detaillPage:", response);
     if (response.ok) {
-      push("/SearchExercice");
+      router.push("/SearchExercice");
     } else {
       console.error(response.status);
     }
