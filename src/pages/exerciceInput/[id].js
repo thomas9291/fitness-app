@@ -11,16 +11,16 @@ export default function DetaillPage() {
   /* const { data: exercice } = useSWR(`/api/exercices/${id}`); */
 
   async function addExerciceInput(exerciceInput) {
-    const response = await fetch(`/api/inputs?id=${id}`, {
+    const response = await fetch(`/api/inputs/${id}?id=${id}`, {
       method: "POST",
       body: JSON.stringify(exerciceInput),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    console.log("put response from detaillPage:", response);
     if (response.ok) {
       router.push("/SearchExercice");
+      console.log("put response from detaillPage:", response);
     } else {
       console.error(response.status);
     }
