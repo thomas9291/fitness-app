@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import classes from "./AddedCart.module.css";
 
 export default function AddedCart({
@@ -7,6 +7,9 @@ export default function AddedCart({
   type,
   muscle,
   equipment,
+  weight,
+  reps,
+  serie,
   onClick,
   linkedId,
 }) {
@@ -34,6 +37,12 @@ export default function AddedCart({
       <p>type: {type}</p>
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
+      <div>
+        <p>
+          last training section: weight: {weight}, repetition: {reps}, serie:{" "}
+          {serie}{" "}
+        </p>
+      </div>
       <div>
         <button className="btn btn-success ">{linkedId}</button>
         <button className="btn btn-danger m-2" type="button" onClick={onClick}>

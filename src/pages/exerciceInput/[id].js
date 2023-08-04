@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import { useSession, signIn, signOut } from "next-auth/react";
 import InputCart from "@/components/InputCart/InputCart";
+import useSWR from "swr";
 
 export default function DetaillPage() {
   const router = useRouter();
   const { id } = router.query;
   const { data: session } = useSession();
-  /* const { data: exercice } = useSWR(`/api/exercices/${id}`); */
+  const { data: exercice } = useSWR(`/api/exercices/${id}`);
 
   async function addExerciceInput(exerciceInput) {
     const response = await fetch(`/api/inputs/${id}?id=${id}`, {
@@ -30,7 +31,16 @@ export default function DetaillPage() {
       <>
         <Navbar />
         <p>id:{id}</p>
-
+        {exercice?.result.map((element) => {
+          return (
+            <div key={element._id}>
+              <p>date: {element.createDate}</p>
+              <p>result: {element.weight}</p>
+              <p>result: {element.reps}</p>
+              <p>result: {element.serie}</p>
+            </div>
+          );
+        })}
         <InputCart onSubmit={addExerciceInput} />
       </>
     );
