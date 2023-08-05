@@ -11,16 +11,14 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
     setTrainingAdded(deleteId);
     push("/Plan");
   };
-  /* const addInput = (newData) => {
-    setTrainingAdded([...trainingAdded, { ...newData, id: uid() }]);
-  }; */
   console.log("training added state from plan.js:", trainingAdded);
+
   return (
     <>
       <Navbar />
       <h2 className="text-center">week 1:</h2>
       <div className="searchExercicesDiv">
-        {trainingAdded.map(({ name, type, muscle, equipment, _id }) => {
+        {trainingAdded.map(({ name, type, muscle, equipment, _id, result }) => {
           return (
             <div key={_id}>
               <AddedCart
@@ -28,6 +26,10 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                 type={type}
                 muscle={muscle}
                 equipment={equipment}
+                date={result[result.length - 1]?.createDate.slice(0, 10)}
+                weight={result[result.length - 1]?.weight}
+                reps={result[result.length - 1]?.reps}
+                serie={result[result.length - 1]?.serie}
                 onClick={() => handlerDelete(_id)}
                 /* onSubmit={addInput} */
                 linkedId={

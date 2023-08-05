@@ -6,12 +6,11 @@ const inputSchema = new Schema({
     type: Date,
     default: () => Date.now(),
   },
-  inputs: {
-    updateDate: Date,
-    weight: Number,
-    serie: Number,
-    reps: Number,
-  },
+
+  weight: { type: Number, required: true },
+  serie: { type: Number, required: true },
+  reps: { type: Number, required: true },
+
   exerciceInput: {
     type: Schema.Types.ObjectId,
     ref: "Exercice",
