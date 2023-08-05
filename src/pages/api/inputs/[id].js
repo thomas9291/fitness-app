@@ -1,4 +1,4 @@
-import dbConnect from "db/connect";
+/* import dbConnect from "db/connect";
 import Input from "db/models/input";
 import Exercice from "db/models/exercice";
 
@@ -24,3 +24,4 @@ export default async function handler(request, response) {
     return response.status(201).json({ status: "Input created" });
   }
 }
+ */
