@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import classes from "./AddedCart.module.css";
 
 export default function AddedCart({
