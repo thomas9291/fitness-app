@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import classes from "./InputCart.module.css";
 
-export default function InputCart({ name, type, muscle, equipment, onSubmit }) {
+export default function InputCart({
+  name,
+  type,
+  muscle,
+  equipment,
+  onSubmit,
+  hideResult,
+  setHideResult,
+}) {
   const [hideForm, setHideForm] = useState(false);
   function handlerHideForm() {
     setHideForm(!hideForm);
+  }
+  function handlerHideResult() {
+    setHideResult(!hideResult);
   }
   const handlerInputData = (event) => {
     event.preventDefault();
@@ -18,11 +29,7 @@ export default function InputCart({ name, type, muscle, equipment, onSubmit }) {
   return (
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
-      {/* <img
-className={classes.image}
-src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZpdG5lc3N8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
-alt=""
-/> */}
+
       <p>type: {type}</p>
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
@@ -30,9 +37,9 @@ alt=""
         <button className="btn btn-success" onClick={handlerHideForm}>
           {hideForm ? "Back" : "Add Info"}
         </button>
-        {/*  <button className="btn btn-danger m-2" type="button" onClick={onClick}>
-          Delete
-        </button> */}
+        <button className="btn btn-info m-1" onClick={handlerHideResult}>
+          {hideResult ? "Back" : "show result"}
+        </button>
       </div>
       {hideForm && (
         <form className={classes.formContainer} onSubmit={handlerInputData}>

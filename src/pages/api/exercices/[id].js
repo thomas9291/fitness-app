@@ -10,7 +10,6 @@ export default async function handler(request, response) {
   }
   if (request.method === "GET") {
     const exercice = await Exercice.findById(id).populate("result");
-    console.log("exercice from api id exercice:", exercice);
 
     if (!exercice || !exercice._id) {
       return response.status(404).json({ status: "Not Found" });
