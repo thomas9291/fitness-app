@@ -6,7 +6,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Navbar from "@/components/Navbar/Navbar";
 import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 
-export default function SearchExercice({ setTrainingAdded }) {
+export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: exercicesList } = useSWR("/api/exercices", {
@@ -15,7 +15,7 @@ export default function SearchExercice({ setTrainingAdded }) {
   const { push } = router;
   const handlerAddTraining = (id) => {
     const filteredId = exercicesList.filter((element) => element._id === id);
-    setTrainingAdded(filteredId);
+    setTrainingAdded([...trainingAdded, ...filteredId]);
     push("/Plan");
   };
 
