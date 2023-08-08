@@ -11,9 +11,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Plan({ trainingAdded, setTrainingAdded }) {
   const router = useRouter();
   const { data: session } = useSession();
-  const { data: exercicesListFilter } = useSWR("/api/exercices", {
-    fallbackData: [],
-  });
+
   const handlerDelete = (id) => {
     const deleteId = trainingAdded.filter((element) => element._id !== id);
     setTrainingAdded(deleteId);
@@ -23,6 +21,20 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
   console.log("training added state from plan.js:", trainingAdded);
 
   if (session) {
+    if (trainingAdded.length === 0) {
+      return (
+        <>
+          <Navbar />
+          <h2 className="text-center">week 1:</h2>
+
+          <h4 className="m-2 text-center">
+            <Link className="text-decoration-none" href="/SearchExercice">
+              ... waiting for new exercice
+            </Link>
+          </h4>
+        </>
+      );
+    }
     return (
       <>
         <Navbar />

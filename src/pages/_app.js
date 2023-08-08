@@ -2,16 +2,19 @@ import "bootstrap/dist/css/bootstrap.css";
 import "@/styles/globals.css";
 import Script from "next/script";
 import Head from "next/head";
+import useLocalStorageState from "use-local-storage-state";
 
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
-import { useState } from "react";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  const [trainingAdded, setTrainingAdded] = useState([]);
+  const [trainingAdded, setTrainingAdded] = useLocalStorageState(
+    "trainingAdded",
+    { defaultValue: [] }
+  );
 
   return (
     <>
