@@ -43,7 +43,7 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
           {trainingAdded.map(
             ({ name, type, muscle, equipment, _id, result }) => {
               return (
-                <div key={_id}>
+                <div key={_id} className="text-center">
                   <AddedCart
                     name={name}
                     type={type}
@@ -62,6 +62,9 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                       >
                         Info & Add
                       </Link>
+                    }
+                    nextTraining={() =>
+                      console.log("next training btn clicked")
                     }
                   />
                 </div>

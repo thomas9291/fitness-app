@@ -19,6 +19,9 @@ export default async function handler(request, response) {
   }
   if (request.method === "POST") {
     const inputToUpDate = request.body;
+    inputToUpDate.weight = +inputToUpDate.weight;
+    inputToUpDate.serie = +inputToUpDate.serie;
+    inputToUpDate.reps = +inputToUpDate.reps;
     const exercice = await Exercice.findById(id);
     const inputData = new Input(inputToUpDate);
     inputData.exerciceInput = exercice;

@@ -33,16 +33,17 @@ export default function DetaillPage() {
     return (
       <>
         <Navbar />
-        <p>id:{id}</p>
-        <InputCart
-          name={exercice?.name}
-          type={exercice?.type}
-          muscle={exercice?.muscle}
-          equipment={exercice?.equipment}
-          onSubmit={addExerciceInput}
-          hideResult={hideResult}
-          setHideResult={setHideResult}
-        />
+        <div className="text-center d-flex justify-content-center">
+          <InputCart
+            name={exercice?.name}
+            type={exercice?.type}
+            muscle={exercice?.muscle}
+            equipment={exercice?.equipment}
+            onSubmit={addExerciceInput}
+            hideResult={hideResult}
+            setHideResult={setHideResult}
+          />
+        </div>
         {hideResult && (
           <ContainerCart>
             {exercice?.result.map((element) => {
