@@ -43,25 +43,13 @@ export default function InputCart({
       </div>
       {hideForm && (
         <form className={classes.formContainer} onSubmit={handlerInputData}>
-          <div className="input-group mb-3">
+          <div className="input-group mb-3 mt-1">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Weight:
             </span>
             <input
-              type="number"
+              type="text"
               name="weight"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-            />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">
-              Serie:
-            </span>
-            <input
-              type="number"
-              name="serie"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -72,13 +60,34 @@ export default function InputCart({
               Reps:
             </span>
             <input
-              type="number"
+              type="text"
               name="reps"
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
             />
           </div>
+          <div className="input-group mb-3">
+            {/*  <span className="input-group-text" id="inputGroup-sizing-default">
+              Serie:
+            </span> */}
+            {/* <input
+              type="number"
+              name="serie"
+              className="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            /> */}
+            <select id="input-group-text" name="serie" className="fs-6">
+              <option value=""> Number of serie </option>
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+
           <button className="btn btn-success" type="submit">
             Submit
           </button>

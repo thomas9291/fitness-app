@@ -13,6 +13,11 @@
   min-width: 240px;
   max-width: 250px;
 }
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
 .formContainer {
   display: flex;
   flex-direction: column;
