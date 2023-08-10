@@ -5,8 +5,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import InputCart from "@/components/InputCart/InputCart";
 import useSWR from "swr";
 import styled from "styled-components";
+import { uid } from "uid";
 
-export default function DetaillPage() {
+export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
   const { id } = router.query;
@@ -22,12 +23,52 @@ export default function DetaillPage() {
       },
     });
     if (response.ok) {
+      setTrainingAdded(
+        trainingAdded.map((training) =>
+          training._id === id
+            ? {
+                ...training,
+                result: [
+                  ...training.result,
+                  {
+                    id: uid(),
+                    weight: +exerciceInput.weight,
+                    serie: +exerciceInput.serie,
+                    reps: +exerciceInput.reps,
+                    createDate: Date.now(),
+                  },
+                ],
+              }
+            : training
+        )
+      );
       router.push("/Plan");
       console.log("put response from detaillPage:", response);
     } else {
       console.error(response.status);
     }
   }
+  /* function addExerciceInputToTheLocalStorage(data) {
+    setTrainingAdded(
+      trainingAdded.map((training) =>
+        training._id === id
+          ? {
+              ...training,
+              result: [
+                ...training.result,
+                {
+                  id: uid(),
+                  weight: data.weight,
+                  serie: data.serie,
+                  reps: data.reps,
+                  createDate:() => Date.now(),
+                },
+              ],
+            }
+          : training
+      )
+    );
+  } */
   console.log("exercice from id detaill page:", exercice);
   if (session) {
     return (
