@@ -9,6 +9,7 @@ export default function InputCart({
   onSubmit,
   hideResult,
   setHideResult,
+  /*  dataToUpdate, */
 }) {
   const [hideForm, setHideForm] = useState(false);
   function handlerHideForm() {
@@ -20,8 +21,8 @@ export default function InputCart({
   const handlerInputData = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-
     const data = Object.fromEntries(formData);
+    /* dataToUpdate(data); */
     console.log("data from form added cart:", data);
     onSubmit(data);
     event.target.reset();

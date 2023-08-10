@@ -49,7 +49,7 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                     type={type}
                     muscle={muscle}
                     equipment={equipment}
-                    date={result[result.length - 1]?.createDate.slice(0, 10)}
+                    /* date={result[result.length - 1]?.createDate.slice(0, 10)} */
                     weight={result[result.length - 1]?.weight}
                     reps={result[result.length - 1]?.reps}
                     serie={result[result.length - 1]?.serie}
