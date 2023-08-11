@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import classes from "./AddedCart.module.css";
 
 export default function AddedCart({
-  onSubmit,
   name,
   type,
   muscle,

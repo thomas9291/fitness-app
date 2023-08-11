@@ -9,6 +9,7 @@ export default function Create() {
   const { data: session } = useSession();
   const router = useRouter();
   const { push } = router;
+
   async function addExercice(exercice) {
     const response = await fetch("/api/exercices", {
       method: "POST",
@@ -23,6 +24,7 @@ export default function Create() {
       console.error(response.status);
     }
   }
+
   if (session?.user?.name === "thomas jubin") {
     return (
       <>
@@ -42,7 +44,6 @@ export default function Create() {
           {" "}
           you are not the admin, you cannot have access to this page
         </h4>
-
         <button
           type="button"
           className="btn btn-success"

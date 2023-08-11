@@ -6,13 +6,14 @@ import InputCart from "@/components/InputCart/InputCart";
 import useSWR from "swr";
 import styled from "styled-components";
 import { uid } from "uid";
+import Image from "next/image";
 
 export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
   const { id } = router.query;
   const { data: session } = useSession();
-  const { data: exercice } = useSWR(`/api/exercices/${id}`);
+  const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
 
   async function addExerciceInput(exerciceInput) {
     const response = await fetch(`/api/exercices/${id}?id=${id}`, {
@@ -22,6 +23,7 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
         "Content-Type": "application/json",
       },
     });
+    let newDate = new Date().toLocaleString();
     if (response.ok) {
       setTrainingAdded(
         trainingAdded.map((training) =>
@@ -35,7 +37,7 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
                     weight: +exerciceInput.weight,
                     serie: +exerciceInput.serie,
                     reps: +exerciceInput.reps,
-                    createDate: Date.now(),
+                    createDate: newDate,
                   },
                 ],
               }
@@ -48,28 +50,26 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
       console.error(response.status);
     }
   }
-  /* function addExerciceInputToTheLocalStorage(data) {
-    setTrainingAdded(
-      trainingAdded.map((training) =>
-        training._id === id
-          ? {
-              ...training,
-              result: [
-                ...training.result,
-                {
-                  id: uid(),
-                  weight: data.weight,
-                  serie: data.serie,
-                  reps: data.reps,
-                  createDate:() => Date.now(),
-                },
-              ],
-            }
-          : training
-      )
-    );
-  } */
+
   console.log("exercice from id detaill page:", exercice);
+  if (isLoading) {
+    return (
+      <div className="text-center d-flex flex-column justify-content-center">
+        <p>...is loading</p>
+        <Image
+          src="https://plus.unsplash.com/premium_photo-1672784160207-03d75e2b83a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zml0bmVzcyUyMGdpcmx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
+          alt="fitness girl"
+          width={200}
+          height={200}
+          style={{
+            borderRadius: "1rem",
+            boxShadow: "10px 5px 5px grey",
+            margin: "auto",
+          }}
+        />
+      </div>
+    );
+  }
   if (session) {
     return (
       <>

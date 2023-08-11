@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-
+let newDate = new Date().toLocaleString();
 const inputSchema = new Schema({
   createDate: {
     type: Date,
-    default: () => Date.now(),
+    default: () => newDate,
   },
 
   weight: { type: Number, required: true },
