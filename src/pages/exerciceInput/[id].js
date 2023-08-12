@@ -15,6 +15,18 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
 
+  function getSerie(key) {
+    const pourcentageRep = {
+      1: 10,
+      3: 9,
+      5: 8.5,
+      10: 7.5,
+      20: 6,
+    };
+
+    return pourcentageRep[key];
+  }
+
   async function addExerciceInput(exerciceInput) {
     const response = await fetch(`/api/exercices/${id}?id=${id}`, {
       method: "POST",
@@ -24,6 +36,24 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
       },
     });
     let newDate = new Date().toLocaleString();
+    let exerciceInputWeightToNumber = +exerciceInput.weight;
+    let exerciceInputSerieInputToNumber = +exerciceInput.serie;
+    let exerciceInputRepsToNumber = +exerciceInput.reps;
+    let exerciceInputRepsTarget = +exerciceInput.serieTarget;
+    const targetSerie = getSerie(exerciceInputRepsTarget);
+
+    let a = exerciceInputWeightToNumber * exerciceInputRepsToNumber;
+    let b = a * 0.0333;
+    let rm = b + exerciceInputWeightToNumber;
+    let c = rm / 10;
+    let targetSerieFinal = c * targetSerie;
+    let d = targetSerieFinal / 10;
+    let adaptationCalcul = Math.round(d * 10.5);
+    console.log(
+      "adaptation calcul from detaill page post req:",
+      adaptationCalcul
+    );
+
     if (response.ok) {
       setTrainingAdded(
         trainingAdded.map((training) =>
@@ -34,10 +64,13 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
                   ...training.result,
                   {
                     id: uid(),
-                    weight: +exerciceInput.weight,
-                    serie: +exerciceInput.serie,
-                    reps: +exerciceInput.reps,
+                    weight: exerciceInputWeightToNumber,
+                    serie: exerciceInputSerieInputToNumber,
+                    reps: exerciceInputRepsToNumber,
                     createDate: newDate,
+                    repMax: rm,
+                    adaptation: adaptationCalcul,
+                    serieTarget: exerciceInputRepsTarget,
                   },
                 ],
               }

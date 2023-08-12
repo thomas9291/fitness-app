@@ -9,7 +9,6 @@ export default function InputCart({
   onSubmit,
   hideResult,
   setHideResult,
-  /*  dataToUpdate, */
 }) {
   const [hideForm, setHideForm] = useState(false);
   function handlerHideForm() {
@@ -22,7 +21,6 @@ export default function InputCart({
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    /* dataToUpdate(data); */
     console.log("data from form added cart:", data);
     onSubmit(data);
     event.target.reset();
@@ -30,7 +28,6 @@ export default function InputCart({
   return (
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
-
       <p>type: {type}</p>
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
@@ -69,18 +66,18 @@ export default function InputCart({
             />
           </div>
           <div className="input-group mb-3">
-            {/*  <span className="input-group-text" id="inputGroup-sizing-default">
-              Serie:
-            </span> */}
-            {/* <input
-              type="number"
-              name="serie"
-              className="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-            /> */}
             <select id="input-group-text" name="serie" className="fs-6">
               <option value=""> Number of serie </option>
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+          <div className="input-group mb-3">
+            <select id="input-group-text" name="serieTarget" className="fs-6">
+              <option value=""> next training series target</option>
               <option value="1">1</option>
               <option value="3">3</option>
               <option value="5">5</option>
