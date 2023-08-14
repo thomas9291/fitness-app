@@ -85,12 +85,12 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   console.log("exercice from id detaill page:", exercice);
   const maxValue = 200;
 
-  let barFillHeight = "";
-  if (exercice.result === 0) {
+  let barFillHeight = "40%";
+  /* if (exercice.result === 0) {
     barFillHeight = "0%";
   } else {
     barFillHeight = Math.round((exercice.result.repMax / maxValue) * 100) + "%";
-  }
+  } */
 
   console.log("barfill height:", barFillHeight);
 
