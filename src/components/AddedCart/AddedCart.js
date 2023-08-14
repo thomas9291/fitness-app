@@ -7,16 +7,20 @@ export default function AddedCart({
   muscle,
   date,
   reps,
-  serie,
   weight,
   equipment,
   onClick,
   linkedId,
-  nextTraining,
+  adaptation,
+  serieTarget,
 }) {
   const [lastTraining, setLastTraining] = useState(false);
+  const [nextTraining, setNextTraining] = useState(false);
   const handlerLastTraining = () => {
     setLastTraining(!lastTraining);
+  };
+  const handlerNextTraining = () => {
+    setNextTraining(!nextTraining);
   };
   return (
     <div className={classes.containerCart}>
@@ -30,7 +34,15 @@ export default function AddedCart({
           Last training:
           <p className="text-primary">date: {date}</p>
           <p className="text-success">
-            weight: {weight} , serie: {serie}, reps: {reps}
+            weight: {weight}kg x reps: {reps}
+          </p>
+        </div>
+      )}
+      {nextTraining && (
+        <div>
+          Next training:
+          <p>
+            weight: {adaptation}kg x reps: {serieTarget}
           </p>
         </div>
       )}
@@ -39,8 +51,8 @@ export default function AddedCart({
         <button className="btn btn-info m-1" onClick={handlerLastTraining}>
           {lastTraining ? "Back" : "Last training"}
         </button>
-        <button className="btn btn-primary m-1" onClick={nextTraining}>
-          next training
+        <button className="btn btn-primary m-1" onClick={handlerNextTraining}>
+          {nextTraining ? "Back" : "Next training"}
         </button>
         <button className="btn btn-danger m-1" type="button" onClick={onClick}>
           Delete

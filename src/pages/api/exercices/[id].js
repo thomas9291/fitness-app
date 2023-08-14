@@ -33,7 +33,6 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     const inputToUpDate = request.body;
     inputToUpDate.weight = +inputToUpDate.weight;
-    inputToUpDate.serie = +inputToUpDate.serie;
     inputToUpDate.reps = +inputToUpDate.reps;
     inputToUpDate.serieTarget = +inputToUpDate.serieTarget;
     const targetSerie = getSerie(inputToUpDate.serieTarget);

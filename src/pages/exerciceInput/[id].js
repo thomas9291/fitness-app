@@ -37,10 +37,9 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
     });
     let newDate = new Date().toLocaleString();
     let exerciceInputWeightToNumber = +exerciceInput.weight;
-    let exerciceInputSerieInputToNumber = +exerciceInput.serie;
     let exerciceInputRepsToNumber = +exerciceInput.reps;
-    let exerciceInputRepsTarget = +exerciceInput.serieTarget;
-    const targetSerie = getSerie(exerciceInputRepsTarget);
+    let exerciceInputserieTarget = +exerciceInput.serieTarget;
+    const targetSerie = getSerie(exerciceInputserieTarget);
 
     let a = exerciceInputWeightToNumber * exerciceInputRepsToNumber;
     let b = a * 0.0333;
@@ -65,12 +64,11 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
                   {
                     id: uid(),
                     weight: exerciceInputWeightToNumber,
-                    serie: exerciceInputSerieInputToNumber,
                     reps: exerciceInputRepsToNumber,
                     createDate: newDate,
                     repMax: rm,
                     adaptation: adaptationCalcul,
-                    serieTarget: exerciceInputRepsTarget,
+                    serieTarget: exerciceInputserieTarget,
                   },
                 ],
               }
@@ -124,9 +122,8 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
               return (
                 <ContainerCartItems key={element._id}>
                   <CartItems>date: {element.createDate.slice(0, 10)}</CartItems>
-                  <CartItems>weigth: {element.weight}</CartItems>
+                  <CartItems>weigth: {element.weight}kg</CartItems>
                   <CartItems>repetition: {element.reps}</CartItems>
-                  <CartItems>serie: {element.serie}</CartItems>
                 </ContainerCartItems>
               );
             })}
