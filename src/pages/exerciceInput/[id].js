@@ -83,6 +83,17 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   }
 
   console.log("exercice from id detaill page:", exercice);
+  const maxValue = 200;
+
+  let barFillHeight = "";
+  if (exercice.result === 0) {
+    barFillHeight = "0%";
+  } else {
+    barFillHeight = Math.round((exercice.result.repMax / maxValue) * 100) + "%";
+  }
+
+  console.log("barfill height:", barFillHeight);
+
   if (isLoading) {
     return (
       <div className="text-center d-flex flex-column justify-content-center">
@@ -116,6 +127,32 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
             setHideResult={setHideResult}
           />
         </div>
+
+        <ContainerCart>
+          <GraphiqueItems>
+            {exercice?.result.map((element) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    margin: "1rem",
+                  }}
+                  key={element._id}
+                >
+                  <ChartBarLabel>max: {element.repMax}kg</ChartBarLabel>
+                  <ChartBar>
+                    <ChartBarFill style={{ height: barFillHeight }} />
+                  </ChartBar>
+                  <ChartBarLabel>
+                    {element.createDate.slice(0, 10)}
+                  </ChartBarLabel>
+                </div>
+              );
+            })}
+          </GraphiqueItems>
+        </ContainerCart>
+
         {hideResult && (
           <ContainerCart>
             {exercice?.result.map((element) => {
@@ -193,4 +230,37 @@ const CartItems = styled.p`
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 0.5rem;
+`;
+const GraphiqueItems = styled.div`
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #f8dfff;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  height: 15rem;
+`;
+const ChartBar = styled.div`
+  height: 100%;
+  width: 100%;
+  border: 1px solid #313131;
+  border-radius: 12px;
+  background-color: #c3b4f3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+`;
+const ChartBarFill = styled.div`
+  background-color: #4826b9;
+  width: 100%;
+  transition: all 0.3s ease-out;
+`;
+const ChartBarLabel = styled.div`
+  font-weight: bold;
+  font-size: 0.5rem;
+  text-align: center;
+  color: black;
+  display: flex;
+  max-width: 1.5rem;
 `;
