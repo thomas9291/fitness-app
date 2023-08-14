@@ -65,19 +65,10 @@ export default function InputCart({
               aria-describedby="inputGroup-sizing-default"
             />
           </div>
-          <div className="input-group mb-3">
-            <select id="input-group-text" name="serie" className="fs-6">
-              <option value=""> Number of serie </option>
-              <option value="1">1</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
-          </div>
+
           <div className="input-group mb-3">
             <select id="input-group-text" name="serieTarget" className="fs-6">
-              <option value=""> next training series target</option>
+              <option value=""> next reps target</option>
               <option value="1">1</option>
               <option value="3">3</option>
               <option value="5">5</option>

@@ -64,7 +64,6 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                     date={result[result.length - 1]?.createDate.slice(0, 10)}
                     weight={result[result.length - 1]?.weight}
                     reps={result[result.length - 1]?.reps}
-                    serie={result[result.length - 1]?.serie}
                     onClick={() => handlerDelete(_id)}
                     linkedId={
                       <Link
@@ -74,9 +73,8 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                         Info & Add
                       </Link>
                     }
-                    nextTraining={() =>
-                      console.log("next training btn clicked")
-                    }
+                    adaptation={result[result.length - 1]?.adaptation}
+                    serieTarget={result[result.length - 1]?.serieTarget}
                   />
                 </div>
               );

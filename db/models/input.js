@@ -8,7 +8,6 @@ const inputSchema = new Schema({
   },
 
   weight: { type: Number, required: true },
-  serie: { type: Number, required: true },
   reps: { type: Number, required: true },
   repMax: { type: Number, required: false },
   serieTarget: { type: Number, required: false },
