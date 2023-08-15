@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar/Navbar";
 
 export default function Create() {
   const { data: session } = useSession();
+
   const router = useRouter();
   const { push } = router;
 
@@ -29,6 +30,8 @@ export default function Create() {
     return (
       <>
         <Navbar onClick={() => signOut()} />
+        <h2 className="text-center mt-2">Create a exercice</h2>
+
         <CreateExercice onSubmit={addExercice} />
       </>
     );
