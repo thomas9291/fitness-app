@@ -1,0 +1,8 @@
+.filterContainer {
+  display: flex;
+  justify-content: center;
+}
+.filterLabel {
+  margin-right: 1rem;
+  color: brown;
+}
