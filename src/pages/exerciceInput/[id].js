@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import { useSession, signIn, signOut } from "next-auth/react";
+
 import InputCart from "@/components/InputCart/InputCart";
+import GraphiqueFilter from "@/components/GraphiqueFilter/GraphiqueFilter";
 import useSWR from "swr";
 import styled from "styled-components";
 import { uid } from "uid";
@@ -11,6 +13,7 @@ import Image from "next/image";
 export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
+  const [filteredYear, setFilteredYear] = useState("2023");
   const { id } = router.query;
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
@@ -83,14 +86,13 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   }
 
   console.log("exercice from id detaill page:", exercice);
-  /* const maxValue = 200;
 
-  let barFillHeight = "40%"; */
-  /* if (exercice.result === 0) {
-    barFillHeight = "0%";
-  } else {
-    barFillHeight = Math.round((exercice.result.repMax / maxValue) * 100) + "%";
-  } */
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+  const filteredGraphique = exercice?.result.filter(
+    (element) => element.createDate.slice(0, 4) === filteredYear
+  );
 
   if (isLoading) {
     return (
@@ -125,42 +127,52 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
             setHideResult={setHideResult}
           />
         </div>
-
-        <ContainerCart>
-          <GraphiqueItems>
-            {exercice?.result.map((element) => {
-              return (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    margin: "1rem",
-                  }}
-                  key={element._id}
-                >
-                  <ChartBarLabel>max: {element.repMax}kg</ChartBarLabel>
-                  <ChartBar>
-                    <ChartBarFill
-                      style={{
-                        height: `${Math.round(
-                          (Number(element.repMax) / Number(exercice.maxValue)) *
-                            100
-                        )}%`,
-                      }}
-                    />
-                  </ChartBar>
-                  <ChartBarLabel>
-                    {element.createDate.slice(0, 10)}
-                  </ChartBarLabel>
-                </div>
-              );
-            })}
-          </GraphiqueItems>
-        </ContainerCart>
+        {hideResult && (
+          <div className="d-flex flex-column justify-content-center  p-2">
+            <GraphiqueFilter
+              selected={filteredYear}
+              onChangeFilter={filterChangeHandler}
+            />
+          </div>
+        )}
+        {hideResult && (
+          <ContainerCart>
+            <GraphiqueItems>
+              {filteredGraphique?.map((element) => {
+                return (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      margin: "1rem",
+                    }}
+                    key={element._id}
+                  >
+                    <ChartBarLabel>max: {element.repMax}kg</ChartBarLabel>
+                    <ChartBar>
+                      <ChartBarFill
+                        style={{
+                          height: `${Math.round(
+                            (Number(element.repMax) /
+                              Number(exercice.maxValue)) *
+                              100
+                          )}%`,
+                        }}
+                      />
+                    </ChartBar>
+                    <ChartBarLabel>
+                      {element.createDate.slice(0, 10)}
+                    </ChartBarLabel>
+                  </div>
+                );
+              })}
+            </GraphiqueItems>
+          </ContainerCart>
+        )}
 
         {hideResult && (
           <ContainerCart>
-            {exercice?.result.map((element) => {
+            {filteredGraphique?.map((element) => {
               return (
                 <ContainerCartItems key={element._id}>
                   <CartItems>date: {element.createDate.slice(0, 10)}</CartItems>
@@ -202,16 +214,18 @@ const ContainerCart = styled.div`
   background-color: #526d82;
   color: #ffea20;
   display: flex;
-  justify-content: flex-start;
+  justify-content: start;
   flex-direction: row;
   border: 1px solid black;
   margin: 1rem;
   padding: 1rem;
   overflow: hidden;
   overflow-x: scroll;
+  width: 100%;
   border-radius: 1rem;
   align-content: center;
   align-items: center;
+  position: relative;
 `;
 const ContainerCartItems = styled.div`
   display: flex;
