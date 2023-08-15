@@ -1,4 +1,4 @@
-/* import multer from "multer";
+import multer from "multer";
 import { handleUpload } from "../../../../helper";
 
 import Exercice from "../../../../db/models/exercice";
@@ -34,7 +34,7 @@ const handler = async (req, res) => {
         }
       );
 
-      return res.status(200).json(placeToUpdate);
+      return res.status(200).json(exerciceToUpdate);
     }
   } catch (error) {
     console.log(error);
@@ -50,4 +50,3 @@ export const config = {
     bodyParser: false,
   },
 };
- */

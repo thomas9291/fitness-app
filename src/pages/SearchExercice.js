@@ -1,11 +1,13 @@
 import React from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-import { useSession, signIn, signOut } from "next-auth/react";
 import Navbar from "@/components/Navbar/Navbar";
 import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
+
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
   const { data: session } = useSession();
@@ -19,10 +21,44 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
     setTrainingAdded([...trainingAdded, ...filteredId]);
     push("/Plan");
   };
+  if (session) {
+    return (
+      <>
+        <Navbar onClick={() => signOut} />
+        <h2 className="text-center">search exercices</h2>
+        <h3 className="text-center">All Exercices:</h3>
+        <div className="searchExercicesDiv">
+          {exercicesList.map(
+            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+              return (
+                <div key={_id}>
+                  {session?.user?.name === "thomas jubin" && (
+                    <div className="text-center">
+                      <Link href={`/exercice/${_id}`}>
+                        <p>Add Foto</p>
+                      </Link>
+                    </div>
+                  )}
+                  <ExerciceCart
+                    name={name}
+                    type={type}
+                    image={images?.[0]}
+                    muscle={muscle}
+                    equipment={equipment}
+                    onClick={() => handlerAddTraining(_id)}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+      </>
+    );
+  }
   if (exercicesList.length === 0) {
     return (
       <>
-        <Navbar />
+        {/* <Navbar onClick={() => signOut} /> */}
 
         <div className="text-center d-flex flex-column justify-content-center">
           <h2>search exercices</h2>
@@ -60,32 +96,7 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
       </div>
     );
   }
-  if (session) {
-    return (
-      <>
-        <Navbar onClick={() => signOut} />
-        <h2>search exercices</h2>
-        <h3>All Exercices:</h3>
-        <div className="searchExercicesDiv">
-          {exercicesList.map(
-            ({ name, onClick, type, muscle, equipment, _id }) => {
-              return (
-                <div key={_id}>
-                  <ExerciceCart
-                    name={name}
-                    type={type}
-                    muscle={muscle}
-                    equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                  />
-                </div>
-              );
-            }
-          )}
-        </div>
-      </>
-    );
-  }
+
   return (
     <>
       <div

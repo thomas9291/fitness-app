@@ -1,40 +1,16 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Navbar from "@/components/Navbar/Navbar";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function HomePage() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return (
-      <>
-        <Navbar onClick={() => signOut()} />
-        <h1>hello home</h1>
-        {/* <ExerciceCart onSubmit={AddResultCart} /> */}
-      </>
-    );
-  }
   return (
     <>
-      <div
-        className="d-flex flex-column card mx-auto mt-5 p-2"
-        style={{ width: "30%" }}
-      >
-        <h1 className="text-center">Fitness App</h1>
-
-        <h4 className="text-center"> Not signed in </h4>
-        <p className="text-center">
-          to have access to your account, first sign in!
-        </p>
-
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => signIn()}
-        >
-          Sign in
-        </button>
+      <Navbar onClick={() => signOut()} />
+      <div className="d-flex flex-column justify-content-center flex-wrap align-content-center ">
+        <h1>hello home</h1>
+        <p>the page is under construction...</p>
       </div>
+      {/* <ExerciceCart onSubmit={AddResultCart} /> */}
     </>
   );
 }

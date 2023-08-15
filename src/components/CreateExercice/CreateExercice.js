@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import classes from "./CreateExercice.module.css";
-import Navbar from "../Navbar/Navbar";
 
 export default function CreateExercice({ onSubmit }) {
   const [hideMuscleInfo, setHideMuscleInfo] = useState(false);
@@ -26,7 +25,6 @@ export default function CreateExercice({ onSubmit }) {
   }
   return (
     <>
-      <h2 className="text-center mt-2">Create a exercice</h2>
       <form
         className={classes.formContainer}
         onSubmit={handlerCreateExerciceData}
