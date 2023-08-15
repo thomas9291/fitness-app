@@ -83,16 +83,14 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
   }
 
   console.log("exercice from id detaill page:", exercice);
-  const maxValue = 200;
+  /* const maxValue = 200;
 
-  let barFillHeight = "40%";
+  let barFillHeight = "40%"; */
   /* if (exercice.result === 0) {
     barFillHeight = "0%";
   } else {
     barFillHeight = Math.round((exercice.result.repMax / maxValue) * 100) + "%";
   } */
-
-  console.log("barfill height:", barFillHeight);
 
   if (isLoading) {
     return (
@@ -142,7 +140,14 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
                 >
                   <ChartBarLabel>max: {element.repMax}kg</ChartBarLabel>
                   <ChartBar>
-                    <ChartBarFill style={{ height: barFillHeight }} />
+                    <ChartBarFill
+                      style={{
+                        height: `${Math.round(
+                          (Number(element.repMax) / Number(exercice.maxValue)) *
+                            100
+                        )}%`,
+                      }}
+                    />
                   </ChartBar>
                   <ChartBarLabel>
                     {element.createDate.slice(0, 10)}

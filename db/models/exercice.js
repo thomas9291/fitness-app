@@ -7,6 +7,7 @@ const exerciceSchema = new Schema({
   muscle: { type: String, required: true },
   equipment: { type: String, required: true },
   images: { type: [String], required: false },
+  maxValue: { type: Number, required: true },
   user: { type: Schema.Types.ObjectId, ref: "User" },
   result: [{ type: Schema.Types.ObjectId, ref: "Input", required: false }],
 });
