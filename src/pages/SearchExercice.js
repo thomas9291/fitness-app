@@ -9,7 +9,12 @@ import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
+export default function SearchExercice({
+  setTrainingAdded,
+  trainingAdded,
+  trainingAddedWeek2,
+  setTrainingAddedWeek2,
+}) {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
@@ -19,6 +24,11 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
   const handlerAddTraining = (id) => {
     const filteredId = exercicesList.filter((element) => element._id === id);
     setTrainingAdded([...trainingAdded, ...filteredId]);
+    push("/Plan");
+  };
+  const handlerAddTrainingWeek2 = (id) => {
+    const filteredId = exercicesList.filter((element) => element._id === id);
+    setTrainingAddedWeek2([...trainingAddedWeek2, ...filteredId]);
     push("/Plan");
   };
   const filteredChestExercice = exercicesList.filter(
@@ -100,7 +110,7 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => console.log("added to week 2")}
+                    week2={() => handlerAddTrainingWeek2(_id)}
                   />
                 </div>
               );
@@ -127,7 +137,7 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => console.log("added to week 2")}
+                    week2={() => handlerAddTrainingWeek2(_id)}
                   />
                 </div>
               );
@@ -154,7 +164,7 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => console.log("added to week 2")}
+                    week2={() => handlerAddTrainingWeek2(_id)}
                   />
                 </div>
               );
@@ -181,7 +191,7 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => console.log("added to week 2")}
+                    week2={() => () => handlerAddTrainingWeek2(_id)}
                   />
                 </div>
               );

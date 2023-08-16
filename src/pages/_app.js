@@ -15,10 +15,10 @@ export default function App({
     "trainingAdded",
     { defaultValue: [] }
   );
-  /* const [trainingAddedWeek2, setTrainingAddedWeek2] = useLocalStorageState(
-    "trainingAdded",
+  const [trainingAddedWeek2, setTrainingAddedWeek2] = useLocalStorageState(
+    "trainingAddedWeek2",
     { defaultValue: [] }
-  ); */
+  );
   return (
     <>
       <Head>
@@ -52,6 +52,8 @@ export default function App({
             {...pageProps}
             trainingAdded={trainingAdded}
             setTrainingAdded={setTrainingAdded}
+            trainingAddedWeek2={trainingAddedWeek2}
+            setTrainingAddedWeek2={setTrainingAddedWeek2}
           />
         </SWRConfig>
       </SessionProvider>
