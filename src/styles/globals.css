@@ -29,4 +29,5 @@ body {
   align-content: center;
   overflow: hidden;
   overflow-x: scroll;
+  position: relative;
 }

@@ -8,6 +8,7 @@ export default function ExerciceCart({
   muscle,
   equipment,
   image,
+  week2,
 }) {
   return (
     <div className={classes.containerCart}>
@@ -18,7 +19,10 @@ export default function ExerciceCart({
       <p>equipment: {equipment}</p>
 
       <button className="btn btn-success" onClick={onClick}>
-        Add to my training
+        Add to week 1
+      </button>
+      <button className="btn btn-success m-1" onClick={week2}>
+        Add to week 2
       </button>
     </div>
   );

@@ -21,44 +21,23 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
     setTrainingAdded([...trainingAdded, ...filteredId]);
     push("/Plan");
   };
-  if (session) {
-    return (
-      <>
-        <Navbar onClick={() => signOut} />
-        <h2 className="text-center">search exercices</h2>
-        <h3 className="text-center">All Exercices:</h3>
-        <div className="searchExercicesDiv">
-          {exercicesList.map(
-            ({ name, onClick, type, muscle, equipment, _id, images }) => {
-              return (
-                <div key={_id}>
-                  {session?.user?.name === "thomas jubin" && (
-                    <div className="text-center">
-                      <Link href={`/exercice/${_id}`}>
-                        <p>Add Foto</p>
-                      </Link>
-                    </div>
-                  )}
-                  <ExerciceCart
-                    name={name}
-                    type={type}
-                    image={images?.[0]}
-                    muscle={muscle}
-                    equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                  />
-                </div>
-              );
-            }
-          )}
-        </div>
-      </>
-    );
-  }
+  const filteredChestExercice = exercicesList.filter(
+    (element) => element.muscle === "chest"
+  );
+  const filteredUpperBackExercice = exercicesList.filter(
+    (element) => element.muscle === "upper back"
+  );
+  const filteredLowerBackExercice = exercicesList.filter(
+    (element) => element.muscle === "lower back"
+  );
+  const filteredLegsExercice = exercicesList.filter(
+    (element) => element.muscle === "legs"
+  );
+
   if (exercicesList.length === 0) {
     return (
       <>
-        {/* <Navbar onClick={() => signOut} /> */}
+        <Navbar onClick={() => signOut} />
 
         <div className="text-center d-flex flex-column justify-content-center">
           <h2>search exercices</h2>
@@ -94,6 +73,122 @@ export default function SearchExercice({ setTrainingAdded, trainingAdded }) {
           }}
         />
       </div>
+    );
+  }
+  if (session) {
+    return (
+      <>
+        <Navbar onClick={() => signOut} />
+        <h2 className="text-center">search exercices</h2>
+        <div className="searchExercicesDiv">
+          <h3 className="position-absolute top-0 start-50">Chest</h3>
+          {filteredChestExercice.map(
+            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+              return (
+                <div key={_id} className="m-2">
+                  {session?.user?.name === "thomas jubin" && (
+                    <div className="text-center">
+                      <Link href={`/exercice/${_id}`}>
+                        <p>Add Foto</p>
+                      </Link>
+                    </div>
+                  )}
+                  <ExerciceCart
+                    name={name}
+                    type={type}
+                    image={images?.[0]}
+                    muscle={muscle}
+                    equipment={equipment}
+                    onClick={() => handlerAddTraining(_id)}
+                    week2={() => console.log("added to week 2")}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+        <div className="searchExercicesDiv">
+          <h3 className="position-absolute top-0 start-50">Upper Back</h3>
+          {filteredUpperBackExercice.map(
+            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+              return (
+                <div key={_id} className="m-2">
+                  {session?.user?.name === "thomas jubin" && (
+                    <div className="text-center">
+                      <Link href={`/exercice/${_id}`}>
+                        <p>Add Foto</p>
+                      </Link>
+                    </div>
+                  )}
+                  <ExerciceCart
+                    name={name}
+                    type={type}
+                    image={images?.[0]}
+                    muscle={muscle}
+                    equipment={equipment}
+                    onClick={() => handlerAddTraining(_id)}
+                    week2={() => console.log("added to week 2")}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+        <div className="searchExercicesDiv">
+          <h3 className="position-absolute top-0 start-50">Lower Back</h3>
+          {filteredLowerBackExercice.map(
+            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+              return (
+                <div key={_id} className="m-2">
+                  {session?.user?.name === "thomas jubin" && (
+                    <div className="text-center">
+                      <Link href={`/exercice/${_id}`}>
+                        <p>Add Foto</p>
+                      </Link>
+                    </div>
+                  )}
+                  <ExerciceCart
+                    name={name}
+                    type={type}
+                    image={images?.[0]}
+                    muscle={muscle}
+                    equipment={equipment}
+                    onClick={() => handlerAddTraining(_id)}
+                    week2={() => console.log("added to week 2")}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+        <div className="searchExercicesDiv">
+          <h3 className="position-absolute top-0 start-50">Legs</h3>
+          {filteredLegsExercice.map(
+            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+              return (
+                <div key={_id} className="m-2">
+                  {session?.user?.name === "thomas jubin" && (
+                    <div className="text-center">
+                      <Link href={`/exercice/${_id}`}>
+                        <p>Add Foto</p>
+                      </Link>
+                    </div>
+                  )}
+                  <ExerciceCart
+                    name={name}
+                    type={type}
+                    image={images?.[0]}
+                    muscle={muscle}
+                    equipment={equipment}
+                    onClick={() => handlerAddTraining(_id)}
+                    week2={() => console.log("added to week 2")}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+      </>
     );
   }
 
