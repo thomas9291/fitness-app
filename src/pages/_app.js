@@ -15,7 +15,10 @@ export default function App({
     "trainingAdded",
     { defaultValue: [] }
   );
-
+  /* const [trainingAddedWeek2, setTrainingAddedWeek2] = useLocalStorageState(
+    "trainingAdded",
+    { defaultValue: [] }
+  ); */
   return (
     <>
       <Head>

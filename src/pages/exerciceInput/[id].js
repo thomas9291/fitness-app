@@ -116,9 +116,10 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
     return (
       <>
         <Navbar />
-        <div className="text-center d-flex justify-content-center">
+        <div className="text-center d-flex flex-column align-items-center">
           <InputCart
             name={exercice?.name}
+            image={exercice?.images?.[0]}
             type={exercice?.type}
             muscle={exercice?.muscle}
             equipment={exercice?.equipment}

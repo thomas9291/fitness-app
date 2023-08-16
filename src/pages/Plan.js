@@ -53,11 +53,12 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
         <h2 className="text-center">week 1:</h2>
         <div className="searchExercicesDiv">
           {trainingAdded.map(
-            ({ name, type, muscle, equipment, _id, result }) => {
+            ({ name, type, muscle, equipment, _id, result, images }) => {
               return (
                 <div key={_id} className="text-center">
                   <AddedCart
                     name={name}
+                    image={images?.[0]}
                     type={type}
                     muscle={muscle}
                     equipment={equipment}

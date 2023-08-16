@@ -13,6 +13,7 @@ export default function AddedCart({
   linkedId,
   adaptation,
   serieTarget,
+  image,
 }) {
   const [lastTraining, setLastTraining] = useState(false);
   const [nextTraining, setNextTraining] = useState(false);
@@ -25,7 +26,7 @@ export default function AddedCart({
   return (
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
-
+      <img className={classes.image} src={image} alt="...waiting for image" />
       <p className="text-danger">type: {type}</p>
       <p className="text-success">muscle: {muscle}</p>
       <p className="text-primary">equipment: {equipment}</p>

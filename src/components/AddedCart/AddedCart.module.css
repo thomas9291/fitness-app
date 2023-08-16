@@ -34,3 +34,8 @@
     width: 90%;
   }
 }
+.image {
+  width: 90%;
+  height: 90%;
+  border-radius: 1rem;
+}
