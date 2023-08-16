@@ -10,6 +10,7 @@ export default function AddedCart({
   weight,
   equipment,
   onClick,
+  onDeleteWeek2,
   linkedId,
   adaptation,
   serieTarget,

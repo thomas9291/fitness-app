@@ -8,7 +8,12 @@ import Image from "next/image";
 
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Plan({ trainingAdded, setTrainingAdded }) {
+export default function Plan({
+  trainingAdded,
+  setTrainingAdded,
+  trainingAddedWeek2,
+  setTrainingAddedWeek2,
+}) {
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -17,11 +22,15 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
     setTrainingAdded(deleteId);
     router.push("/Plan");
   };
-
+  const handlerDeleteWeek2 = (id) => {
+    const deleteId = trainingAddedWeek2.filter((element) => element._id !== id);
+    setTrainingAddedWeek2(deleteId);
+    router.push("/Plan");
+  };
   console.log("training added state from plan.js:", trainingAdded);
 
   if (session) {
-    if (trainingAdded.length === 0) {
+    if (trainingAdded.length === 0 && trainingAddedWeek2.length === 0) {
       return (
         <>
           <Navbar />
@@ -66,6 +75,39 @@ export default function Plan({ trainingAdded, setTrainingAdded }) {
                     weight={result[result.length - 1]?.weight}
                     reps={result[result.length - 1]?.reps}
                     onClick={() => handlerDelete(_id)}
+                    linkedId={
+                      <Link
+                        className="text-white text-decoration-none"
+                        href={`/exerciceInput/${_id}`}
+                      >
+                        Info & Add
+                      </Link>
+                    }
+                    adaptation={result[result.length - 1]?.adaptation}
+                    serieTarget={result[result.length - 1]?.serieTarget}
+                  />
+                </div>
+              );
+            }
+          )}
+        </div>
+        <h2 className="text-center">week 2:</h2>
+
+        <div className="searchExercicesDiv">
+          {trainingAddedWeek2.map(
+            ({ name, type, muscle, equipment, _id, result, images }) => {
+              return (
+                <div key={_id} className="text-center">
+                  <AddedCart
+                    name={name}
+                    image={images?.[0]}
+                    type={type}
+                    muscle={muscle}
+                    equipment={equipment}
+                    date={result[result.length - 1]?.createDate.slice(0, 10)}
+                    weight={result[result.length - 1]?.weight}
+                    reps={result[result.length - 1]?.reps}
+                    onClick={() => handlerDeleteWeek2(_id)}
                     linkedId={
                       <Link
                         className="text-white text-decoration-none"

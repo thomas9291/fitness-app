@@ -10,7 +10,12 @@ import styled from "styled-components";
 import { uid } from "uid";
 import Image from "next/image";
 
-export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
+export default function DetaillPage({
+  setTrainingAdded,
+  trainingAdded,
+  trainingAddedWeek2,
+  setTrainingAddedWeek2,
+}) {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
   const [filteredYear, setFilteredYear] = useState("2023");
@@ -57,29 +62,56 @@ export default function DetaillPage({ setTrainingAdded, trainingAdded }) {
     );
 
     if (response.ok) {
-      setTrainingAdded(
-        trainingAdded.map((training) =>
-          training._id === id
-            ? {
-                ...training,
-                result: [
-                  ...training.result,
-                  {
-                    id: uid(),
-                    weight: exerciceInputWeightToNumber,
-                    reps: exerciceInputRepsToNumber,
-                    createDate: newDate,
-                    repMax: rm,
-                    adaptation: adaptationCalcul,
-                    serieTarget: exerciceInputserieTarget,
-                  },
-                ],
-              }
-            : training
-        )
-      );
-      router.push("/Plan");
-      console.log("put response from detaillPage:", response);
+      if (trainingAdded) {
+        setTrainingAdded(
+          trainingAdded.map((training) =>
+            training._id === id
+              ? {
+                  ...training,
+                  result: [
+                    ...training.result,
+                    {
+                      id: uid(),
+                      weight: exerciceInputWeightToNumber,
+                      reps: exerciceInputRepsToNumber,
+                      createDate: newDate,
+                      repMax: rm,
+                      adaptation: adaptationCalcul,
+                      serieTarget: exerciceInputserieTarget,
+                    },
+                  ],
+                }
+              : training
+          )
+        );
+        router.push("/Plan");
+        console.log("put response from detaillPage:", response);
+      }
+      if (trainingAddedWeek2) {
+        setTrainingAddedWeek2(
+          trainingAddedWeek2.map((training) =>
+            training._id === id
+              ? {
+                  ...training,
+                  result: [
+                    ...training.result,
+                    {
+                      id: uid(),
+                      weight: exerciceInputWeightToNumber,
+                      reps: exerciceInputRepsToNumber,
+                      createDate: newDate,
+                      repMax: rm,
+                      adaptation: adaptationCalcul,
+                      serieTarget: exerciceInputserieTarget,
+                    },
+                  ],
+                }
+              : training
+          )
+        );
+        router.push("/Plan");
+        console.log("put response from detaillPage:", response);
+      }
     } else {
       console.error(response.status);
     }
