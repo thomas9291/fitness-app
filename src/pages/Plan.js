@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import useSWR from "swr";
 import Navbar from "@/components/Navbar/Navbar";
 import Link from "next/link";
 import AddedCart from "@/components/AddedCart/AddedCart";
@@ -8,29 +9,28 @@ import Image from "next/image";
 
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Plan({
-  trainingAdded,
-  setTrainingAdded,
-  trainingAddedWeek2,
-  setTrainingAddedWeek2,
-}) {
+export default function Plan() {
+  const { data: userExercicesList } = useSWR("/api/user", {
+    fallbackData: [],
+  });
   const router = useRouter();
   const { data: session } = useSession();
+  console.log("userExercicesList from plan:", userExercicesList);
 
-  const handlerDelete = (id) => {
+  /*   const handlerDelete = (id) => {
     const deleteId = trainingAdded.filter((element) => element._id !== id);
     setTrainingAdded(deleteId);
     router.push("/Plan");
-  };
-  const handlerDeleteWeek2 = (id) => {
+  }; */
+  /* const handlerDeleteWeek2 = (id) => {
     const deleteId = trainingAddedWeek2.filter((element) => element._id !== id);
     setTrainingAddedWeek2(deleteId);
     router.push("/Plan");
-  };
-  console.log("training added state from plan.js:", trainingAdded);
+  }; */
+  /*  console.log("training added state from plan.js:", trainingAdded); */
 
   if (session) {
-    if (trainingAdded.length === 0 && trainingAddedWeek2.length === 0) {
+    if (userExercicesList.length === 0) {
       return (
         <>
           <Navbar />
@@ -61,8 +61,8 @@ export default function Plan({
         <Navbar />
         <h2 className="text-center">week 1:</h2>
         <div className="searchExercicesDiv">
-          {trainingAdded.map(
-            ({ name, type, muscle, equipment, _id, result, images }) => {
+          {userExercicesList.exerciceUser.map(
+            ({ name, type, muscle, equipment, result, _id, images }) => {
               return (
                 <div key={_id} className="text-center">
                   <AddedCart
@@ -71,9 +71,9 @@ export default function Plan({
                     type={type}
                     muscle={muscle}
                     equipment={equipment}
-                    date={result[result.length - 1]?.createDate.slice(0, 10)}
-                    weight={result[result.length - 1]?.weight}
-                    reps={result[result.length - 1]?.reps}
+                    date={result?.[result.length - 1]?.createDate?.slice(0, 10)}
+                    weight={result?.[result.length - 1]?.weight}
+                    reps={result?.[result.length - 1]?.reps}
                     onClick={() => handlerDelete(_id)}
                     linkedId={
                       <Link
@@ -83,15 +83,16 @@ export default function Plan({
                         Info & Add
                       </Link>
                     }
-                    adaptation={result[result.length - 1]?.adaptation}
-                    serieTarget={result[result.length - 1]?.serieTarget}
+                    adaptation={result?.[result.length - 1]?.adaptation}
+                    serieTarget={result?.[result.length - 1]?.serieTarget}
                   />
                 </div>
               );
             }
           )}
         </div>
-        <h2 className="text-center">week 2:</h2>
+
+        {/*   <h2 className="text-center">week 2:</h2>
 
         <div className="searchExercicesDiv">
           {trainingAddedWeek2.map(
@@ -104,9 +105,9 @@ export default function Plan({
                     type={type}
                     muscle={muscle}
                     equipment={equipment}
-                    date={result[result.length - 1]?.createDate.slice(0, 10)}
-                    weight={result[result.length - 1]?.weight}
-                    reps={result[result.length - 1]?.reps}
+                    date={result?.[result.length - 1]?.createDate?.slice(0, 10)}
+                    weight={result?.[result.length - 1]?.weight}
+                    reps={result?.[result.length - 1]?.reps}
                     onClick={() => handlerDeleteWeek2(_id)}
                     linkedId={
                       <Link
@@ -116,14 +117,14 @@ export default function Plan({
                         Info & Add
                       </Link>
                     }
-                    adaptation={result[result.length - 1]?.adaptation}
-                    serieTarget={result[result.length - 1]?.serieTarget}
+                    adaptation={result?.[result.length - 1]?.adaptation}
+                    serieTarget={result?.[result.length - 1]?.serieTarget}
                   />
                 </div>
               );
             }
           )}
-        </div>
+        </div> */}
       </>
     );
   }
@@ -146,3 +147,13 @@ export default function Plan({
     </>
   );
 }
+
+/* import useSWR from "swr";
+
+export default function Plan() {
+  const { data: UserExercicesList } = useSWR("/api/user", {
+    fallbackData: [],
+  });
+  console.log("UserExercicesList from plan page:", UserExercicesList);
+  return <div>Plan</div>;
+} */

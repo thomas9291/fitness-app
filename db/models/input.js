@@ -18,6 +18,7 @@ const inputSchema = new Schema({
     ref: "Exercice",
     required: false,
   },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
