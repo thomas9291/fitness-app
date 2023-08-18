@@ -60,7 +60,7 @@ export default function DetaillPage({
       "adaptation calcul from detaill page post req:",
       adaptationCalcul
     );
-
+    console.log("exercice from detaill page:", exercice);
     if (response.ok) {
       if (trainingAdded) {
         setTrainingAdded(

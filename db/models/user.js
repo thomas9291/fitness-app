@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
   name: { type: String, required: false },
   email: { type: String, required: true },
-  role: { type: String, default: "user" },
+  exerciceUser: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+  exerciceUserWeek2: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

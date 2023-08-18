@@ -1,10 +1,16 @@
 import dbConnect from "db/connect";
 import Exercice from "db/models/exercice";
 import Input from "db/models/input";
+/* import User from "db/models/user"; */
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
+  const session = await getServerSession(request, response, authOptions);
+  /*  const userId = session?.user?._id; */
 
   function getSerie(key) {
     const pourcentageRep = {
@@ -22,12 +28,13 @@ export default async function handler(request, response) {
     return response.status(404).json({ status: "Not Found" });
   }
   if (request.method === "GET") {
-    const exercice = await Exercice.findById(id).populate("result");
+    const exercice = await Exercice.findById(id)?.populate("result");
+    /*  const userExercice = await User.exerciceUser.push(exercice); */
 
     if (!exercice || !exercice._id) {
       return response.status(404).json({ status: "Not Found" });
     }
-
+    /* console.log("userExercice from api exercice api:", userExercice); */
     response.status(200).json(exercice);
   }
   if (request.method === "POST") {
@@ -52,6 +59,7 @@ export default async function handler(request, response) {
     inputData.adaptation = adaptationCalcul;
     inputData.exerciceInput = exercice;
     exercice.result.push(inputData);
+    /* exercice.user = userId; */
     await inputData.save();
     await exercice.save();
 

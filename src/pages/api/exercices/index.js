@@ -1,6 +1,5 @@
 import dbConnect from "db/connect";
 import Exercice from "db/models/exercice";
-import Input from "db/models/input";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
@@ -9,9 +8,9 @@ export default async function Handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const admin = session?.user?.name === "thomas jubin";
-  /* const id = session?.user?._id; */
+  /* const userId = session?.user?._id; */
   if (request.method === "GET") {
-    const exercices = await Exercice.find({}).populate("result");
+    const exercices = await Exercice.find({});
     return response.status(200).json(exercices);
   }
   if (request.method === "POST") {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
@@ -9,28 +9,36 @@ import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SearchExercice({
-  setTrainingAdded,
-  trainingAdded,
-  trainingAddedWeek2,
-  setTrainingAddedWeek2,
-}) {
+export default function SearchExercice() {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
-  const { push } = router;
-  const handlerAddTraining = (id) => {
+  /*  const [trainingAdded, setTrainingAdded] = useState([]); */
+  /* onst [trainingAddedWeek2, setTrainingAddedWeek2] = useState([]); */
+
+  async function handlerAddTraining(id) {
     const filteredId = exercicesList.filter((element) => element._id === id);
-    setTrainingAdded([...trainingAdded, ...filteredId]);
-    push("/Plan");
-  };
-  const handlerAddTrainingWeek2 = (id) => {
-    const filteredId = exercicesList.filter((element) => element._id === id);
-    setTrainingAddedWeek2([...trainingAddedWeek2, ...filteredId]);
-    push("/Plan");
-  };
+    /*  setTrainingAdded(filteredId); */
+    const response = await fetch("/api/user", {
+      method: "POST",
+      body: JSON.stringify({
+        userExercice: filteredId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      console.error(`There was an error: ${response.status}`);
+    } else {
+      router.push("/Plan");
+    }
+  }
+
+  /* console.log("trainingAdded from search page:", trainingAdded); */
+  /* console.log("trainingAddedWeek2 from search page:", trainingAddedWeek2); */
   const filteredChestExercice = exercicesList.filter(
     (element) => element.muscle === "chest"
   );
@@ -110,7 +118,7 @@ export default function SearchExercice({
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => handlerAddTrainingWeek2(_id)}
+                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
                   />
                 </div>
               );
@@ -137,7 +145,7 @@ export default function SearchExercice({
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => handlerAddTrainingWeek2(_id)}
+                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
                   />
                 </div>
               );
@@ -164,7 +172,7 @@ export default function SearchExercice({
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => handlerAddTrainingWeek2(_id)}
+                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
                   />
                 </div>
               );
@@ -191,7 +199,7 @@ export default function SearchExercice({
                     muscle={muscle}
                     equipment={equipment}
                     onClick={() => handlerAddTraining(_id)}
-                    week2={() => () => handlerAddTrainingWeek2(_id)}
+                    /*  week2={() => () => handlerAddTrainingWeek2(_id)} */
                   />
                 </div>
               );
