@@ -10,7 +10,7 @@ export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
   const session = await getServerSession(request, response, authOptions);
-  /*  const userId = session?.user?._id; */
+  const userId = session?.user?._id;
 
   function getSerie(key) {
     const pourcentageRep = {
@@ -58,6 +58,7 @@ export default async function handler(request, response) {
     inputData.serieTarget = inputToUpDate.serieTarget;
     inputData.adaptation = adaptationCalcul;
     inputData.exerciceInput = exercice;
+    inputData.user = userId;
     exercice.result.push(inputData);
     /* exercice.user = userId; */
     await inputData.save();
