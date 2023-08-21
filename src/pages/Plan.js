@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Plan() {
-  const { data: userExercicesList } = useSWR("/api/user", {
+  const { data: userExercicesList } = useSWR("/api/plan", {
     fallbackData: [],
   });
   const router = useRouter();

@@ -15,17 +15,17 @@ export default function SearchExercice() {
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
+  console.log("exerciceList from search page:", exercicesList);
   /*  const [trainingAdded, setTrainingAdded] = useState([]); */
   /* onst [trainingAddedWeek2, setTrainingAddedWeek2] = useState([]); */
 
   async function handlerAddTraining(id) {
     const filteredId = exercicesList.filter((element) => element._id === id);
+    console.log("filter id from search page:", filteredId);
     /*  setTrainingAdded(filteredId); */
-    const response = await fetch("/api/user", {
+    const response = await fetch("/api/plan", {
       method: "POST",
-      body: JSON.stringify({
-        userExercice: filteredId,
-      }),
+      body: JSON.stringify({ filteredId }),
       headers: {
         "Content-Type": "application/json",
       },
