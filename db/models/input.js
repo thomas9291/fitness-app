@@ -21,6 +21,8 @@ const inputSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
+/* const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
 
-export default Input;
+export default Input; */
+
+export default inputSchema;
