@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const planSchema = new Schema({
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  user: [{ type: Schema.Types.ObjectId, ref: "User" }],
   exerciceUser: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
 });
 

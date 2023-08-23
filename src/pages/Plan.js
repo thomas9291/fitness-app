@@ -61,35 +61,39 @@ export default function Plan() {
         <Navbar />
         <h2 className="text-center">week 1:</h2>
         <div className="searchExercicesDiv">
-          {userExercicesList.exerciceUser.map(
-            ({ name, type, muscle, equipment, result, _id, images }) => {
-              return (
-                <div key={_id} className="text-center">
-                  <AddedCart
-                    name={name}
-                    image={images?.[0]}
-                    type={type}
-                    muscle={muscle}
-                    equipment={equipment}
-                    date={result?.[result.length - 1]?.createDate?.slice(0, 10)}
-                    weight={result?.[result.length - 1]?.weight}
-                    reps={result?.[result.length - 1]?.reps}
-                    onClick={() => handlerDelete(_id)}
-                    linkedId={
-                      <Link
-                        className="text-white text-decoration-none"
-                        href={`/exerciceInput/${_id}`}
-                      >
-                        Info & Add
-                      </Link>
-                    }
-                    adaptation={result?.[result.length - 1]?.adaptation}
-                    serieTarget={result?.[result.length - 1]?.serieTarget}
-                  />
-                </div>
-              );
-            }
-          )}
+          {userExercicesList?.map(({ exerciceUser, _id }) => {
+            return (
+              <div key={_id} className="text-center">
+                <AddedCart
+                  name={exerciceUser?.name}
+                  image={exerciceUser?.images?.[0]}
+                  type={exerciceUser?.type}
+                  muscle={exerciceUser?.muscle}
+                  equipment={exerciceUser?.equipment}
+                  date={exerciceUser?.result?.[
+                    result.length - 1
+                  ]?.createDate?.slice(0, 10)}
+                  weight={exerciceUser?.result?.[result.length - 1]?.weight}
+                  reps={exerciceUser?.result?.[result.length - 1]?.reps}
+                  onClick={() => handlerDelete(_id)}
+                  linkedId={
+                    <Link
+                      className="text-white text-decoration-none"
+                      href={`/exerciceInput/${exerciceUser._id}`}
+                    >
+                      Info & Add
+                    </Link>
+                  }
+                  adaptation={
+                    exerciceUser?.result?.[result.length - 1]?.adaptation
+                  }
+                  serieTarget={
+                    exerciceUser?.result?.[result.length - 1]?.serieTarget
+                  }
+                />
+              </div>
+            );
+          })}
         </div>
 
         {/*   <h2 className="text-center">week 2:</h2>

@@ -12,6 +12,7 @@ import Link from "next/link";
 export default function SearchExercice() {
   const { data: session } = useSession();
   const router = useRouter();
+
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
@@ -20,12 +21,12 @@ export default function SearchExercice() {
   /* onst [trainingAddedWeek2, setTrainingAddedWeek2] = useState([]); */
 
   async function handlerAddTraining(id) {
-    const filteredId = exercicesList.filter((element) => element._id === id);
+    const filteredId = exercicesList.find((element) => element._id === id);
     console.log("filter id from search page:", filteredId);
     /*  setTrainingAdded(filteredId); */
-    const response = await fetch("/api/plan", {
+    const response = await fetch(`/api/plan`, {
       method: "POST",
-      body: JSON.stringify({ filteredId }),
+      body: JSON.stringify(filteredId),
       headers: {
         "Content-Type": "application/json",
       },
