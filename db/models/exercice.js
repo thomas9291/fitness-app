@@ -10,12 +10,12 @@ const exerciceSchema = new Schema({
   maxValue: { type: Number, required: false },
 });
 
-/* const Exercice =
+const Exercice =
   mongoose.models.Exercice || mongoose.model("Exercice", exerciceSchema);
 
-export default Exercice; */
+export default Exercice;
 
 /* user: { type: Schema.Types.ObjectId, ref: "User" },
 result: [{ type: Schema.Types.ObjectId, ref: "Input", required: false }], */
 
-export default exerciceSchema;
+/* export default exerciceSchema; */
