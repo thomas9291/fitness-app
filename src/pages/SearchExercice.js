@@ -24,9 +24,10 @@ export default function SearchExercice() {
     const filteredId = exercicesList.find((element) => element._id === id);
     console.log("filter id from search page:", filteredId);
     /*  setTrainingAdded(filteredId); */
-    const response = await fetch(`/api/plan`, {
+    const response = await fetch("/api/plan", {
       method: "POST",
-      body: JSON.stringify(filteredId),
+      mode: "cors",
+      body: JSON.stringify({ filteredId }),
       headers: {
         "Content-Type": "application/json",
       },
