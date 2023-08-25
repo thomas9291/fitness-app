@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import inputSchema from "./input";
+
 const { Schema } = mongoose;
 
 const exerciceSchema = new Schema({
@@ -8,6 +10,7 @@ const exerciceSchema = new Schema({
   equipment: { type: String, required: false },
   images: { type: [String], required: false },
   maxValue: { type: Number, required: false },
+  result: [{ type: Schema.Types.ObjectId, ref: "Input" }],
 });
 
 const Exercice =

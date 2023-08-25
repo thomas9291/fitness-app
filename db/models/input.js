@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
+
 const { Schema } = mongoose;
+
 let newDate = new Date().toLocaleString();
 const inputSchema = new Schema({
   createDate: {
@@ -12,17 +14,12 @@ const inputSchema = new Schema({
   repMax: { type: Number, required: false },
   serieTarget: { type: Number, required: false },
   adaptation: { type: Number, required: false },
-
-  exerciceInput: {
-    type: Schema.Types.ObjectId,
-    ref: "Exercice",
-    required: false,
-  },
   user: { type: Schema.Types.ObjectId, ref: "User" },
+  exerciceInput: { type: Schema.Types.ObjectId, ref: "Exercice" },
 });
 
-/* const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
+const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
 
-export default Input; */
+export default Input;
 
-export default inputSchema;
+/* export default inputSchema; */
