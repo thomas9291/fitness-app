@@ -1,7 +1,7 @@
 import dbConnect from "db/connect";
 import Exercice from "db/models/exercice";
 import Input from "db/models/input";
-/* import User from "db/models/user"; */
+import User from "db/models/user";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
@@ -28,7 +28,10 @@ export default async function handler(request, response) {
     return response.status(404).json({ status: "Not Found" });
   }
   if (request.method === "GET") {
-    const exercice = await Exercice.findById(id)?.populate("result");
+    const exercice = await Exercice.findOne({ user: userId })?.populate(
+      "result"
+    );
+    console.log("exercice from exercices id api:", exercice);
     /*  const userExercice = await User.exerciceUser.push(exercice); */
 
     if (!exercice || !exercice._id) {
@@ -52,7 +55,7 @@ export default async function handler(request, response) {
     let d = targetSerieFinal / 10;
     let adaptationCalcul = Math.round(d * 10.5);
 
-    const exercice = await Exercice.findById(id);
+    const exercice = await User.findOne({ plans: id });
     const inputData = new Input(inputToUpDate);
     inputData.repMax = rm;
     inputData.serieTarget = inputToUpDate.serieTarget;
@@ -60,10 +63,14 @@ export default async function handler(request, response) {
     inputData.exerciceInput = exercice;
     inputData.user = userId;
     exercice.result.push(inputData);
-    /* exercice.user = userId; */
+    exercice.user = userId;
     await inputData.save();
     await exercice.save();
 
     return response.status(201).json({ status: "Input created" });
+  }
+  if (request.method === "DELETE") {
+    const plansToDelete = await Exercice.deleteOne({ user: userId });
+    response.status(200).json(plansToDelete);
   }
 }

@@ -1,28 +1,24 @@
-/* import React, { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Navbar from "@/components/Navbar/Navbar";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import InputCart from "@/components/InputCart/InputCart";
+import ContainerResultCart from "@/components/ContainerResultCart/ContainerResultCart";
 import GraphiqueFilter from "@/components/GraphiqueFilter/GraphiqueFilter";
 import useSWR from "swr";
 import styled from "styled-components";
-import { uid } from "uid";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function DetaillPage({
-  setTrainingAdded,
-  trainingAdded,
-  trainingAddedWeek2,
-  setTrainingAddedWeek2,
-}) {
+export default function DetaillPage() {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
   const [filteredYear, setFilteredYear] = useState("2023");
   const { id } = router.query;
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
-
+  console.log("exercice from id api:", exercice);
   function getSerie(key) {
     const pourcentageRep = {
       1: 10,
@@ -43,7 +39,7 @@ export default function DetaillPage({
         "Content-Type": "application/json",
       },
     });
-    let newDate = new Date().toLocaleString();
+
     let exerciceInputWeightToNumber = +exerciceInput.weight;
     let exerciceInputRepsToNumber = +exerciceInput.reps;
     let exerciceInputserieTarget = +exerciceInput.serieTarget;
@@ -62,62 +58,21 @@ export default function DetaillPage({
     );
     console.log("exercice from detaill page:", exercice);
     if (response.ok) {
-      if (trainingAdded) {
-        setTrainingAdded(
-          trainingAdded.map((training) =>
-            training._id === id
-              ? {
-                  ...training,
-                  result: [
-                    ...training.result,
-                    {
-                      id: uid(),
-                      weight: exerciceInputWeightToNumber,
-                      reps: exerciceInputRepsToNumber,
-                      createDate: newDate,
-                      repMax: rm,
-                      adaptation: adaptationCalcul,
-                      serieTarget: exerciceInputserieTarget,
-                    },
-                  ],
-                }
-              : training
-          )
-        );
-        router.push("/Plan");
-        console.log("put response from detaillPage:", response);
-      }
-      if (trainingAddedWeek2) {
-        setTrainingAddedWeek2(
-          trainingAddedWeek2.map((training) =>
-            training._id === id
-              ? {
-                  ...training,
-                  result: [
-                    ...training.result,
-                    {
-                      id: uid(),
-                      weight: exerciceInputWeightToNumber,
-                      reps: exerciceInputRepsToNumber,
-                      createDate: newDate,
-                      repMax: rm,
-                      adaptation: adaptationCalcul,
-                      serieTarget: exerciceInputserieTarget,
-                    },
-                  ],
-                }
-              : training
-          )
-        );
-        router.push("/Plan");
-        console.log("put response from detaillPage:", response);
-      }
+      router.push("/Plan");
+      console.log("put response from detaillPage:", response);
     } else {
       console.error(response.status);
     }
   }
 
   console.log("exercice from id detaill page:", exercice);
+
+  async function handlerDelete() {
+    await fetch(`/api/exercice/${id}`, {
+      method: "DELETE",
+    });
+    router.push("/Plan");
+  }
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -149,6 +104,7 @@ export default function DetaillPage({
       <>
         <Navbar />
         <div className="text-center d-flex flex-column align-items-center">
+          <Link href={"/Plan"}>Back to the plan</Link>
           <InputCart
             name={exercice?.name}
             image={exercice?.images?.[0]}
@@ -158,7 +114,33 @@ export default function DetaillPage({
             onSubmit={addExerciceInput}
             hideResult={hideResult}
             setHideResult={setHideResult}
+            onDelete={() => handlerDelete()}
           />
+          {exercice.result.length === 0 ? (
+            <p className="text-danger">...waiting for info</p>
+          ) : (
+            <ContainerResultCart>
+              {exercice?.result?.map((element, index) => {
+                if (index === exercice.result.length - 1) {
+                  return (
+                    <div key={element?._id}>
+                      <h2 className="m-1">next training:</h2>
+                      <p>
+                        weight:{" "}
+                        <span className="text-info">
+                          {element?.adaptation}kg
+                        </span>
+                      </p>
+                      <p>
+                        repetition:{" "}
+                        <span className="text-info">{element.serieTarget}</span>
+                      </p>
+                    </div>
+                  );
+                }
+              })}
+            </ContainerResultCart>
+          )}
         </div>
         {hideResult && (
           <div className="d-flex flex-column justify-content-center  p-2">
@@ -316,4 +298,3 @@ const ChartBarLabel = styled.div`
   display: flex;
   max-width: 1.5rem;
 `;
- */

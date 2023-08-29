@@ -12,7 +12,7 @@ export default async function Handler(request, response) {
   if (request.method === "GET") {
     //the user is now connected to the session by the id
     const userPlans = await User.findOne({ _id: userId }).populate("plans");
-    return response.status(200).json(userPlans);
+    return response.status(200).json(userPlans.plans);
   }
   if (request.method === "POST") {
     try {
@@ -21,13 +21,17 @@ export default async function Handler(request, response) {
 
         console.log("exercice to update from plan api:", exerciceToUpdate);
 
-        const userPlanId = await User.findById({ userId });
-        const newExercice = new Exercice(exerciceToUpdate);
+        const userPlanId = await User.findOneAndUpdate(
+          { _id: userId },
+          {
+            $addToSet: { plans: exerciceToUpdate },
+          }
+        );
 
-        userPlanId.plans.push(newExercice);
-        console.log("user plan from plan api:", userPlanId);
+        /*  userPlanId.plans.push(exerciceToUpdate);
+        console.log("user plan from plan api:", userPlanId); */
 
-        await Promise.all([userPlanId.save(), newExercice.save()]);
+        await Promise.all([userPlanId.save(), exerciceToUpdate.save()]);
 
         return response.status(201).json({ status: "user exercice created" });
       }
