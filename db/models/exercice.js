@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import inputSchema from "./input";
 
 const { Schema } = mongoose;
 
@@ -11,6 +10,7 @@ const exerciceSchema = new Schema({
   images: { type: [String], required: false },
   maxValue: { type: Number, required: false },
   result: [{ type: Schema.Types.ObjectId, ref: "Input" }],
+  user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 const Exercice =

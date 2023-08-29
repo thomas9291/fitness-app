@@ -10,6 +10,7 @@ export default function InputCart({
   hideResult,
   setHideResult,
   image,
+  onDelete,
 }) {
   const [hideForm, setHideForm] = useState(false);
   function handlerHideForm() {
@@ -34,6 +35,9 @@ export default function InputCart({
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
       <div>
+        <button className="btn btn-danger m-1" onClick={onDelete}>
+          Delete
+        </button>
         <button className="btn btn-success" onClick={handlerHideForm}>
           {hideForm ? "Back" : "Add Info"}
         </button>

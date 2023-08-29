@@ -16,14 +16,7 @@ export default function Plan() {
   const router = useRouter();
   const { data: session } = useSession();
   console.log("userExercicesList from plan:", userExercicesList);
-  const { plans } = userExercicesList;
-  console.log("user plan from plan page:", plans);
 
-  /*   const handlerDelete = (id) => {
-    const deleteId = trainingAdded.filter((element) => element._id !== id);
-    setTrainingAdded(deleteId);
-    router.push("/Plan");
-  }; */
   /* const handlerDeleteWeek2 = (id) => {
     const deleteId = trainingAddedWeek2.filter((element) => element._id !== id);
     setTrainingAddedWeek2(deleteId);
@@ -32,7 +25,7 @@ export default function Plan() {
   /*  console.log("training added state from plan.js:", trainingAdded); */
 
   if (session) {
-    if (plans === 0) {
+    if (userExercicesList === 0) {
       return (
         <>
           <Navbar />
@@ -63,7 +56,7 @@ export default function Plan() {
         <Navbar />
         <h2 className="text-center">week 1:</h2>
         <div className="searchExercicesDiv">
-          {plans?.map((element) => {
+          {userExercicesList?.map((element) => {
             return (
               <div key={element._id} className="text-center">
                 <AddedCart
@@ -72,25 +65,14 @@ export default function Plan() {
                   type={element.type}
                   muscle={element.muscle}
                   equipment={element.equipment}
-                  /*  date={plans[0].result?.[result.length - 1]?.createDate?.slice(
-                    0,
-                    10
-                  )}
-                  weight={plans[0].result?.[result.length - 1]?.weight}
-                  reps={plans[0].result?.[result.length - 1]?.reps}
-                  onClick={() => handlerDelete(_id)}
                   linkedId={
                     <Link
                       className="text-white text-decoration-none"
-                      href={`/exerciceInput/${plans[0]._id}`}
+                      href={`/exerciceInput/${element._id}`}
                     >
                       Info & Add
                     </Link>
                   }
-                  adaptation={plans[0].result?.[result.length - 1]?.adaptation}
-                  serieTarget={
-                    plans[0].result?.[result.length - 1]?.serieTarget
-                  } */
                 />
               </div>
             );
