@@ -6,8 +6,7 @@ export default function AddedCart({
   type,
   muscle,
   equipment,
-  onClick,
-  onDeleteWeek2,
+  onDelete,
   linkedId,
   image,
 }) {
@@ -18,8 +17,10 @@ export default function AddedCart({
       <p className="text-danger">type: {type}</p>
       <p className="text-success">muscle: {muscle}</p>
       <p className="text-primary">equipment: {equipment}</p>
-
       <div className={classes.btnContainer}>
+        <button className="btn btn-danger m-1" onClick={onDelete}>
+          Delete
+        </button>
         <button className="btn btn-success ">{linkedId}</button>
       </div>
     </div>
