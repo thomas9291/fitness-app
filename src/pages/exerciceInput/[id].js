@@ -67,13 +67,6 @@ export default function DetaillPage() {
 
   console.log("exercice from id detaill page:", exercice);
 
-  async function handlerDelete() {
-    await fetch(`/api/exercice/${id}`, {
-      method: "DELETE",
-    });
-    router.push("/Plan");
-  }
-
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
@@ -114,9 +107,8 @@ export default function DetaillPage() {
             onSubmit={addExerciceInput}
             hideResult={hideResult}
             setHideResult={setHideResult}
-            onDelete={() => handlerDelete()}
           />
-          {exercice.result.length === 0 ? (
+          {exercice?.result.length === 0 ? (
             <p className="text-danger">...waiting for info</p>
           ) : (
             <ContainerResultCart>

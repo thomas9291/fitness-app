@@ -12,6 +12,8 @@ export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
   const userId = session?.user?._id;
 
+  console.log("query id from api exercices id:", id);
+
   function getSerie(key) {
     const pourcentageRep = {
       1: 10,
@@ -28,9 +30,7 @@ export default async function handler(request, response) {
     return response.status(404).json({ status: "Not Found" });
   }
   if (request.method === "GET") {
-    const exercice = await Exercice.findOne({ user: userId })?.populate(
-      "result"
-    );
+    const exercice = await Exercice.findById(id)?.populate("result");
     console.log("exercice from exercices id api:", exercice);
     /*  const userExercice = await User.exerciceUser.push(exercice); */
 
@@ -55,7 +55,7 @@ export default async function handler(request, response) {
     let d = targetSerieFinal / 10;
     let adaptationCalcul = Math.round(d * 10.5);
 
-    const exercice = await User.findOne({ plans: id });
+    const exercice = await Exercice.findById(id);
     const inputData = new Input(inputToUpDate);
     inputData.repMax = rm;
     inputData.serieTarget = inputToUpDate.serieTarget;
@@ -69,8 +69,11 @@ export default async function handler(request, response) {
 
     return response.status(201).json({ status: "Input created" });
   }
-  if (request.method === "DELETE") {
-    const plansToDelete = await Exercice.deleteOne({ user: userId });
+  if (request.method === "PUT") {
+    const plansToDelete = await User.updateOne(
+      { _id: userId },
+      { $pull: { plans: request.body._id } }
+    );
     response.status(200).json(plansToDelete);
   }
 }

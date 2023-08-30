@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import useSWR from "swr";
 import Navbar from "@/components/Navbar/Navbar";
@@ -10,21 +10,62 @@ import Image from "next/image";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Plan() {
-  const { data: userExercicesList } = useSWR("/api/plan", {
+  const { data: userExercicesList, isLoading } = useSWR("/api/plan", {
     fallbackData: [],
   });
+
   const router = useRouter();
   const { data: session } = useSession();
   console.log("userExercicesList from plan:", userExercicesList);
-
-  /* const handlerDeleteWeek2 = (id) => {
-    const deleteId = trainingAddedWeek2.filter((element) => element._id !== id);
-    setTrainingAddedWeek2(deleteId);
-    router.push("/Plan");
-  }; */
-  /*  console.log("training added state from plan.js:", trainingAdded); */
+  async function handleDelete(obj) {
+    const response = await fetch(`/api/exercices/${obj._id}`, {
+      method: "PUT",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      await response.json();
+      router.reload();
+    } else {
+      console.error(`Error:${response.status}`);
+    }
+  }
 
   if (session) {
+    if (userExercicesList) {
+      return (
+        <>
+          <Navbar />
+          <h2 className="text-center">week 1:</h2>
+          <div className="searchExercicesDiv">
+            {userExercicesList?.map((element) => {
+              return (
+                <div key={element._id} className="text-center">
+                  <AddedCart
+                    name={element.name}
+                    image={element.images?.[0]}
+                    type={element.type}
+                    muscle={element.muscle}
+                    equipment={element.equipment}
+                    onDelete={() => handleDelete(element)}
+                    linkedId={
+                      <Link
+                        className="text-white text-decoration-none"
+                        href={`/exerciceInput/${element._id}`}
+                      >
+                        Info & Add
+                      </Link>
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </>
+      );
+    }
     if (userExercicesList === 0) {
       return (
         <>
@@ -51,86 +92,42 @@ export default function Plan() {
         </>
       );
     }
+    if (isLoading) {
+      return (
+        <div className="text-center d-flex justify-content-center">
+          <p>...is loading</p>
+          <Image
+            src="https://plus.unsplash.com/premium_photo-1672784160207-03d75e2b83a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zml0bmVzcyUyMGdpcmx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
+            alt="fitness girl"
+            width={200}
+            height={200}
+            style={{
+              borderRadius: "1rem",
+              boxShadow: "10px 5px 5px grey",
+              margin: "auto",
+            }}
+          />
+        </div>
+      );
+    }
+
     return (
       <>
-        <Navbar />
-        <h2 className="text-center">week 1:</h2>
-        <div className="searchExercicesDiv">
-          {userExercicesList?.map((element) => {
-            return (
-              <div key={element._id} className="text-center">
-                <AddedCart
-                  name={element.name}
-                  image={element.images?.[0]}
-                  type={element.type}
-                  muscle={element.muscle}
-                  equipment={element.equipment}
-                  linkedId={
-                    <Link
-                      className="text-white text-decoration-none"
-                      href={`/exerciceInput/${element._id}`}
-                    >
-                      Info & Add
-                    </Link>
-                  }
-                />
-              </div>
-            );
-          })}
+        <div
+          className="d-flex flex-column card mx-auto mt-5 p-2"
+          style={{ width: "30%" }}
+        >
+          <h4 className="text-center"> Not signed in </h4>
+
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => signIn()}
+          >
+            Sign in
+          </button>
         </div>
-
-        {/*   <h2 className="text-center">week 2:</h2>
-
-        <div className="searchExercicesDiv">
-          {trainingAddedWeek2.map(
-            ({ name, type, muscle, equipment, _id, result, images }) => {
-              return (
-                <div key={_id} className="text-center">
-                  <AddedCart
-                    name={name}
-                    image={images?.[0]}
-                    type={type}
-                    muscle={muscle}
-                    equipment={equipment}
-                    date={result?.[result.length - 1]?.createDate?.slice(0, 10)}
-                    weight={result?.[result.length - 1]?.weight}
-                    reps={result?.[result.length - 1]?.reps}
-                    onClick={() => handlerDeleteWeek2(_id)}
-                    linkedId={
-                      <Link
-                        className="text-white text-decoration-none"
-                        href={`/exerciceInput/${_id}`}
-                      >
-                        Info & Add
-                      </Link>
-                    }
-                    adaptation={result?.[result.length - 1]?.adaptation}
-                    serieTarget={result?.[result.length - 1]?.serieTarget}
-                  />
-                </div>
-              );
-            }
-          )}
-        </div> */}
       </>
     );
   }
-  return (
-    <>
-      <div
-        className="d-flex flex-column card mx-auto mt-5 p-2"
-        style={{ width: "30%" }}
-      >
-        <h4 className="text-center"> Not signed in </h4>
-
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => signIn()}
-        >
-          Sign in
-        </button>
-      </div>
-    </>
-  );
 }
