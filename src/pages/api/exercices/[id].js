@@ -30,7 +30,8 @@ export default async function handler(request, response) {
     return response.status(404).json({ status: "Not Found" });
   }
   if (request.method === "GET") {
-    const exercice = await Exercice.findById(id)?.populate("result");
+    const exercice = await Exercice.findById(id).populate("result");
+
     console.log("exercice from exercices id api:", exercice);
     /*  const userExercice = await User.exerciceUser.push(exercice); */
 
@@ -60,11 +61,12 @@ export default async function handler(request, response) {
     inputData.repMax = rm;
     inputData.serieTarget = inputToUpDate.serieTarget;
     inputData.adaptation = adaptationCalcul;
+
     inputData.exerciceInput = exercice;
     inputData.user = userId;
-
     exercice.result.push(inputData);
 
+    /* await inputData.save(); */
     await Promise.all([exercice.save(), inputData.save()]);
 
     return response.status(201).json({ status: "Input created" });
