@@ -26,15 +26,11 @@ export default async function Handler(request, response) {
 
         const userPlanId = await User.findById({ _id: userId });
 
-        const newExercice = await new Exercice(exerciceToUpdate);
-
-        newExercice._id = uid();
-
-        userPlanId.plans.push(newExercice);
+        userPlanId.plans.push(exerciceToUpdate);
         console.log("user plan from plan api:", userPlanId);
-        console.log("newExercice from plan api:", newExercice);
+        console.log("newExercice from plan api:", exerciceToUpdate);
 
-        userPlanId.save();
+        await userPlanId.save();
 
         return response.status(201).json({ status: "user exercice created" });
       }

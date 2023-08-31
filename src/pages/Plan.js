@@ -34,10 +34,28 @@ export default function Plan() {
   }
 
   if (session) {
+    if (isLoading) {
+      return (
+        <div className="text-center d-flex justify-content-center">
+          <p>...is loading</p>
+          <Image
+            src="https://plus.unsplash.com/premium_photo-1672784160207-03d75e2b83a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zml0bmVzcyUyMGdpcmx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
+            alt="fitness girl"
+            width={200}
+            height={200}
+            style={{
+              borderRadius: "1rem",
+              boxShadow: "10px 5px 5px grey",
+              margin: "auto",
+            }}
+          />
+        </div>
+      );
+    }
     if (userExercicesList) {
       return (
         <>
-          <Navbar />
+          <Navbar onClick={() => signOut()} />
           <h2 className="text-center">week 1:</h2>
           <div className="searchExercicesDiv">
             {userExercicesList?.map((element) => {
@@ -92,42 +110,23 @@ export default function Plan() {
         </>
       );
     }
-    if (isLoading) {
-      return (
-        <div className="text-center d-flex justify-content-center">
-          <p>...is loading</p>
-          <Image
-            src="https://plus.unsplash.com/premium_photo-1672784160207-03d75e2b83a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zml0bmVzcyUyMGdpcmx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
-            alt="fitness girl"
-            width={200}
-            height={200}
-            style={{
-              borderRadius: "1rem",
-              boxShadow: "10px 5px 5px grey",
-              margin: "auto",
-            }}
-          />
-        </div>
-      );
-    }
-
-    return (
-      <>
-        <div
-          className="d-flex flex-column card mx-auto mt-5 p-2"
-          style={{ width: "30%" }}
-        >
-          <h4 className="text-center"> Not signed in </h4>
-
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={() => signIn()}
-          >
-            Sign in
-          </button>
-        </div>
-      </>
-    );
   }
+  return (
+    <>
+      <div
+        className="d-flex flex-column card mx-auto mt-5 p-2"
+        style={{ width: "30%" }}
+      >
+        <h4 className="text-center"> Not signed in </h4>
+
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={() => signIn()}
+        >
+          Sign in
+        </button>
+      </div>
+    </>
+  );
 }

@@ -48,13 +48,7 @@ export default function App({
             },
           }}
         >
-          <Component
-            {...pageProps}
-            /*       trainingAdded={trainingAdded}
-            setTrainingAdded={setTrainingAdded}
-            trainingAddedWeek2={trainingAddedWeek2}
-            setTrainingAddedWeek2={setTrainingAddedWeek2} */
-          />
+          <Component {...pageProps} />
         </SWRConfig>
       </SessionProvider>
     </>
