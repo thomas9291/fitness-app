@@ -18,6 +18,7 @@ export default function DetaillPage() {
   const { id } = router.query;
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
+
   console.log("exercice from id api:", exercice);
   function getSerie(key) {
     const pourcentageRep = {

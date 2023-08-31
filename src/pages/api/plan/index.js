@@ -3,7 +3,6 @@ import User from "db/models/user";
 import Exercice from "db/models/exercice";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { uid } from "uid";
 
 export default async function Handler(request, response) {
   await dbConnect();
@@ -20,17 +19,26 @@ export default async function Handler(request, response) {
     try {
       if (userId) {
         const exerciceToUpdate = request.body.filteredId;
-        exerciceToUpdate.user = userId;
+
+        const newExercice = await new Exercice({
+          name: exerciceToUpdate.name,
+          type: exerciceToUpdate.type,
+          muscle: exerciceToUpdate.muscle,
+          equipment: exerciceToUpdate.equipment,
+          images: exerciceToUpdate.images,
+          maxValue: exerciceToUpdate.maxValue,
+        });
+        newExercice.user = userId;
 
         console.log("exercice to update from plan api:", exerciceToUpdate);
 
         const userPlanId = await User.findById({ _id: userId });
 
-        userPlanId.plans.push(exerciceToUpdate);
+        userPlanId.plans.push(newExercice);
         console.log("user plan from plan api:", userPlanId);
-        console.log("newExercice from plan api:", exerciceToUpdate);
+        console.log("newExercice from plan api:", newExercice);
 
-        await userPlanId.save();
+        await Promise.all([userPlanId.save(), newExercice.save()]);
 
         return response.status(201).json({ status: "user exercice created" });
       }
