@@ -62,10 +62,10 @@ export default async function handler(request, response) {
     inputData.adaptation = adaptationCalcul;
     inputData.exerciceInput = exercice;
     inputData.user = userId;
+
     exercice.result.push(inputData);
-    exercice.user = userId;
-    await inputData.save();
-    await exercice.save();
+
+    await Promise.all([exercice.save(), inputData.save()]);
 
     return response.status(201).json({ status: "Input created" });
   }

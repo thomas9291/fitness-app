@@ -70,7 +70,7 @@ export default function DetaillPage() {
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
-  const filteredGraphique = exercice?.result.filter(
+  const filteredGraphique = exercice?.result?.filter(
     (element) => element.createDate.slice(0, 4) === filteredYear
   );
 
@@ -95,7 +95,7 @@ export default function DetaillPage() {
   if (session) {
     return (
       <>
-        <Navbar />
+        <Navbar onClick={() => signOut()} />
         <div className="text-center d-flex flex-column align-items-center">
           <Link href={"/Plan"}>Back to the plan</Link>
           <InputCart
@@ -108,7 +108,7 @@ export default function DetaillPage() {
             hideResult={hideResult}
             setHideResult={setHideResult}
           />
-          {exercice?.result.length === 0 ? (
+          {exercice?.result?.length === 0 ? (
             <p className="text-danger">...waiting for info</p>
           ) : (
             <ContainerResultCart>
