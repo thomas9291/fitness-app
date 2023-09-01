@@ -5,20 +5,25 @@ import { useRouter } from "next/router";
 
 import Navbar from "@/components/Navbar/Navbar";
 import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
-
+import SearchExerciceFilter from "@/components/SearchExerciceFilter/SearchExerciceFilter";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function SearchExercice() {
   const { data: session } = useSession();
   const router = useRouter();
+  const [filteredEquipment, setfilteredEquipment] = useState();
 
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
   console.log("exerciceList from search page:", exercicesList);
-  /* const [handlerAddTraining, setWeek1] = useState(null); */
-  /* const [week2, setWeek2] = useState(null); */
+  const filterChangeHandler = (selectedEquiment) => {
+    setfilteredEquipment(selectedEquiment);
+  };
+  const filteredEquipmentExercices = exercicesList.filter(
+    (element) => element.equipment === filteredEquipment
+  );
   async function handlerAddTraining(id, week) {
     let filteredId = exercicesList.find((element) => element._id === id);
     if (week === "week1") {
@@ -47,16 +52,16 @@ export default function SearchExercice() {
       router.push("/Plan");
     }
   }
-  const filteredChestExercice = exercicesList.filter(
+  const filteredChestExercice = filteredEquipmentExercices.filter(
     (element) => element.muscle === "chest"
   );
-  const filteredUpperBackExercice = exercicesList.filter(
+  const filteredUpperBackExercice = filteredEquipmentExercices.filter(
     (element) => element.muscle === "upper back"
   );
-  const filteredLowerBackExercice = exercicesList.filter(
+  const filteredLowerBackExercice = filteredEquipmentExercices.filter(
     (element) => element.muscle === "lower back"
   );
-  const filteredLegsExercice = exercicesList.filter(
+  const filteredLegsExercice = filteredEquipmentExercices.filter(
     (element) => element.muscle === "legs"
   );
 
@@ -65,10 +70,14 @@ export default function SearchExercice() {
       <>
         <Navbar onClick={() => signOut} />
         <h2 className="text-center">search exercices</h2>
+        <SearchExerciceFilter
+          selected={filteredEquipment}
+          onChangeFilter={filterChangeHandler}
+        />
         <div className="searchExercicesDiv">
           <h3 className="position-absolute top-0 start-50">Chest</h3>
           {filteredChestExercice.map(
-            ({ name, type, muscle, equipment, _id, images }) => {
+            ({ name, muscle, equipment, _id, images }) => {
               return (
                 <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
@@ -80,7 +89,6 @@ export default function SearchExercice() {
                   )}
                   <ExerciceCart
                     name={name}
-                    type={type}
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
@@ -97,7 +105,7 @@ export default function SearchExercice() {
         <div className="searchExercicesDiv">
           <h3 className="position-absolute top-0 start-50">Upper Back</h3>
           {filteredUpperBackExercice.map(
-            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+            ({ name, muscle, equipment, _id, images }) => {
               return (
                 <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
@@ -109,7 +117,6 @@ export default function SearchExercice() {
                   )}
                   <ExerciceCart
                     name={name}
-                    type={type}
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
@@ -126,7 +133,15 @@ export default function SearchExercice() {
         <div className="searchExercicesDiv">
           <h3 className="position-absolute top-0 start-50">Lower Back</h3>
           {filteredLowerBackExercice.map(
-            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+            ({
+              name,
+              onClick,
+
+              muscle,
+              equipment,
+              _id,
+              images,
+            }) => {
               return (
                 <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
@@ -138,7 +153,6 @@ export default function SearchExercice() {
                   )}
                   <ExerciceCart
                     name={name}
-                    type={type}
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
@@ -155,7 +169,15 @@ export default function SearchExercice() {
         <div className="searchExercicesDiv">
           <h3 className="position-absolute top-0 start-50">Legs</h3>
           {filteredLegsExercice.map(
-            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+            ({
+              name,
+              onClick,
+
+              muscle,
+              equipment,
+              _id,
+              images,
+            }) => {
               return (
                 <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
@@ -167,7 +189,6 @@ export default function SearchExercice() {
                   )}
                   <ExerciceCart
                     name={name}
-                    type={type}
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}

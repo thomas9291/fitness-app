@@ -67,7 +67,6 @@ export default function Plan() {
                   <AddedCart
                     name={element.name}
                     image={element.images?.[0]}
-                    type={element.type}
                     muscle={element.muscle}
                     equipment={element.equipment}
                     onDelete={() => handleDelete(element)}
@@ -92,7 +91,6 @@ export default function Plan() {
                   <AddedCart
                     name={element.name}
                     image={element.images?.[0]}
-                    type={element.type}
                     muscle={element.muscle}
                     equipment={element.equipment}
                     onDelete={() => handleDelete(element)}
@@ -117,7 +115,6 @@ export default function Plan() {
                   <AddedCart
                     name={element.name}
                     image={element.images?.[0]}
-                    type={element.type}
                     muscle={element.muscle}
                     equipment={element.equipment}
                     onDelete={() => handleDelete(element)}
@@ -142,7 +139,6 @@ export default function Plan() {
                   <AddedCart
                     name={element.name}
                     image={element.images?.[0]}
-                    type={element.type}
                     muscle={element.muscle}
                     equipment={element.equipment}
                     onDelete={() => handleDelete(element)}

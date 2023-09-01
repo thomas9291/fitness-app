@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./AddedCart.module.css";
 
 export default function AddedCart({
   name,
-  type,
   muscle,
   equipment,
   onDelete,
@@ -14,7 +13,6 @@ export default function AddedCart({
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
       <img className={classes.image} src={image} alt="...waiting for image" />
-      <p className="text-danger">type: {type}</p>
       <p className="text-success">muscle: {muscle}</p>
       <p className="text-primary">equipment: {equipment}</p>
       <div className={classes.btnContainer}>
