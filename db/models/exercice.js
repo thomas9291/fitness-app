@@ -9,6 +9,7 @@ const exerciceSchema = new Schema({
   equipment: { type: String, required: false },
   images: { type: [String], required: false },
   maxValue: { type: Number, required: false },
+  week: { type: String, required: false },
   result: [{ type: Schema.Types.ObjectId, ref: "Input" }],
   user: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });

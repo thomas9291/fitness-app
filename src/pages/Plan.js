@@ -13,7 +13,10 @@ export default function Plan() {
   const { data: userExercicesList, isLoading } = useSWR("/api/plan", {
     fallbackData: [],
   });
-
+  const week1 = userExercicesList?.planWeek1;
+  const week2 = userExercicesList?.planWeek2;
+  const week3 = userExercicesList?.planWeek3;
+  const week4 = userExercicesList?.planWeek4;
   const router = useRouter();
   const { data: session } = useSession();
   console.log("userExercicesList from plan:", userExercicesList);
@@ -58,7 +61,82 @@ export default function Plan() {
           <Navbar onClick={() => signOut()} />
           <h2 className="text-center">week 1:</h2>
           <div className="searchExercicesDiv">
-            {userExercicesList?.map((element) => {
+            {week1?.map((element) => {
+              return (
+                <div key={element._id} className="text-center">
+                  <AddedCart
+                    name={element.name}
+                    image={element.images?.[0]}
+                    type={element.type}
+                    muscle={element.muscle}
+                    equipment={element.equipment}
+                    onDelete={() => handleDelete(element)}
+                    linkedId={
+                      <Link
+                        className="text-white text-decoration-none"
+                        href={`/exerciceInput/${element._id}`}
+                      >
+                        Info & Add
+                      </Link>
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <h2 className="text-center">week 2:</h2>
+          <div className="searchExercicesDiv">
+            {week2?.map((element) => {
+              return (
+                <div key={element._id} className="text-center">
+                  <AddedCart
+                    name={element.name}
+                    image={element.images?.[0]}
+                    type={element.type}
+                    muscle={element.muscle}
+                    equipment={element.equipment}
+                    onDelete={() => handleDelete(element)}
+                    linkedId={
+                      <Link
+                        className="text-white text-decoration-none"
+                        href={`/exerciceInput/${element._id}`}
+                      >
+                        Info & Add
+                      </Link>
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <h2 className="text-center">week 3:</h2>
+          <div className="searchExercicesDiv">
+            {week3?.map((element) => {
+              return (
+                <div key={element._id} className="text-center">
+                  <AddedCart
+                    name={element.name}
+                    image={element.images?.[0]}
+                    type={element.type}
+                    muscle={element.muscle}
+                    equipment={element.equipment}
+                    onDelete={() => handleDelete(element)}
+                    linkedId={
+                      <Link
+                        className="text-white text-decoration-none"
+                        href={`/exerciceInput/${element._id}`}
+                      >
+                        Info & Add
+                      </Link>
+                    }
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <h2 className="text-center">week 4:</h2>
+          <div className="searchExercicesDiv">
+            {week4?.map((element) => {
               return (
                 <div key={element._id} className="text-center">
                   <AddedCart
@@ -84,6 +162,7 @@ export default function Plan() {
         </>
       );
     }
+
     if (userExercicesList === 0) {
       return (
         <>

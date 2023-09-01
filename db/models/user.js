@@ -10,7 +10,10 @@ const userSchema = new Schema({
     unique: true,
     sparse: true,
   },
-  plans: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+  planWeek1: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+  planWeek2: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+  planWeek3: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+  planWeek4: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
 });
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);

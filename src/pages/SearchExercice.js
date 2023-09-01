@@ -17,13 +17,22 @@ export default function SearchExercice() {
     fallbackData: [],
   });
   console.log("exerciceList from search page:", exercicesList);
-  /*  const [trainingAdded, setTrainingAdded] = useState([]); */
-  /* onst [trainingAddedWeek2, setTrainingAddedWeek2] = useState([]); */
-
-  async function handlerAddTraining(id) {
-    const filteredId = exercicesList.find((element) => element._id === id);
-    console.log("filter id from search page:", filteredId);
-    /*  setTrainingAdded(filteredId); */
+  /* const [handlerAddTraining, setWeek1] = useState(null); */
+  /* const [week2, setWeek2] = useState(null); */
+  async function handlerAddTraining(id, week) {
+    let filteredId = exercicesList.find((element) => element._id === id);
+    if (week === "week1") {
+      filteredId.week = "week1";
+    }
+    if (week === "week2") {
+      filteredId.week = "week2";
+    }
+    if (week === "week3") {
+      filteredId.week = "week3";
+    }
+    if (week === "week4") {
+      filteredId.week = "week4";
+    }
     const response = await fetch("/api/plan", {
       method: "POST",
       mode: "cors",
@@ -38,9 +47,6 @@ export default function SearchExercice() {
       router.push("/Plan");
     }
   }
-
-  /* console.log("trainingAdded from search page:", trainingAdded); */
-  /* console.log("trainingAddedWeek2 from search page:", trainingAddedWeek2); */
   const filteredChestExercice = exercicesList.filter(
     (element) => element.muscle === "chest"
   );
@@ -62,9 +68,9 @@ export default function SearchExercice() {
         <div className="searchExercicesDiv">
           <h3 className="position-absolute top-0 start-50">Chest</h3>
           {filteredChestExercice.map(
-            ({ name, onClick, type, muscle, equipment, _id, images }) => {
+            ({ name, type, muscle, equipment, _id, images }) => {
               return (
-                <div key={_id} className="m-2">
+                <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
                     <div className="text-center">
                       <Link href={`/exercice/${_id}`}>
@@ -78,8 +84,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
+                    week1={() => handlerAddTraining(_id, "week1")}
+                    week2={() => handlerAddTraining(_id, "week2")}
+                    week3={() => handlerAddTraining(_id, "week3")}
+                    week4={() => handlerAddTraining(_id, "week4")}
                   />
                 </div>
               );
@@ -91,7 +99,7 @@ export default function SearchExercice() {
           {filteredUpperBackExercice.map(
             ({ name, onClick, type, muscle, equipment, _id, images }) => {
               return (
-                <div key={_id} className="m-2">
+                <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
                     <div className="text-center">
                       <Link href={`/exercice/${_id}`}>
@@ -105,8 +113,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
+                    week1={() => handlerAddTraining(_id, "week1")}
+                    week2={() => handlerAddTraining(_id, "week2")}
+                    week3={() => handlerAddTraining(_id, "week3")}
+                    week4={() => handlerAddTraining(_id, "week4")}
                   />
                 </div>
               );
@@ -118,7 +128,7 @@ export default function SearchExercice() {
           {filteredLowerBackExercice.map(
             ({ name, onClick, type, muscle, equipment, _id, images }) => {
               return (
-                <div key={_id} className="m-2">
+                <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
                     <div className="text-center">
                       <Link href={`/exercice/${_id}`}>
@@ -132,8 +142,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                    /*  week2={() => handlerAddTrainingWeek2(_id)} */
+                    week1={() => handlerAddTraining(_id, "week1")}
+                    week2={() => handlerAddTraining(_id, "week2")}
+                    week3={() => handlerAddTraining(_id, "week3")}
+                    week4={() => handlerAddTraining(_id, "week4")}
                   />
                 </div>
               );
@@ -145,7 +157,7 @@ export default function SearchExercice() {
           {filteredLegsExercice.map(
             ({ name, onClick, type, muscle, equipment, _id, images }) => {
               return (
-                <div key={_id} className="m-2">
+                <div key={_id} className="mt-4">
                   {session?.user?.name === "thomas jubin" && (
                     <div className="text-center">
                       <Link href={`/exercice/${_id}`}>
@@ -159,8 +171,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    onClick={() => handlerAddTraining(_id)}
-                    /*  week2={() => () => handlerAddTrainingWeek2(_id)} */
+                    week1={() => handlerAddTraining(_id, "week1")}
+                    week2={() => handlerAddTraining(_id, "week2")}
+                    week3={() => handlerAddTraining(_id, "week3")}
+                    week4={() => handlerAddTraining(_id, "week4")}
                   />
                 </div>
               );

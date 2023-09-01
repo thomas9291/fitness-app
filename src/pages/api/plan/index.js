@@ -11,13 +11,18 @@ export default async function Handler(request, response) {
   const userId = session?.user?._id;
   if (request.method === "GET") {
     //the user is now connected to the session by the id
-    const userPlans = await User.findOne({ _id: userId }).populate("plans");
+    const userPlans = await User.findOne({ _id: userId })
+      .populate("planWeek1")
+      .populate("planWeek2")
+      .populate("planWeek3")
+      .populate("planWeek4");
     console.log("user plan from pla api:", userPlans);
-    return response.status(200).json(userPlans.plans);
+    return response.status(200).json(userPlans);
   }
   if (request.method === "POST") {
     try {
       if (userId) {
+        console.log("request body from plan api:", request.body);
         const exerciceToUpdate = request.body.filteredId;
 
         const newExercice = await new Exercice({
@@ -27,16 +32,26 @@ export default async function Handler(request, response) {
           equipment: exerciceToUpdate.equipment,
           images: exerciceToUpdate.images,
           maxValue: exerciceToUpdate.maxValue,
+          week: exerciceToUpdate.week,
         });
         newExercice.user = userId;
 
-        console.log("exercice to update from plan api:", exerciceToUpdate);
+        console.log("new exercice from plan api:", newExercice);
 
         const userPlanId = await User.findById({ _id: userId });
 
-        userPlanId.plans.push(newExercice);
-        console.log("user plan from plan api:", userPlanId);
-        console.log("newExercice from plan api:", newExercice);
+        if (exerciceToUpdate.week === "week1") {
+          userPlanId.planWeek1.push(newExercice);
+        }
+        if (exerciceToUpdate.week === "week2") {
+          userPlanId.planWeek2.push(newExercice);
+        }
+        if (exerciceToUpdate.week === "week3") {
+          userPlanId.planWeek3.push(newExercice);
+        }
+        if (exerciceToUpdate.week === "week4") {
+          userPlanId.planWeek4.push(newExercice);
+        }
 
         await Promise.all([userPlanId.save(), newExercice.save()]);
 
