@@ -102,7 +102,6 @@ export default function DetaillPage() {
           <InputCart
             name={exercice?.name}
             image={exercice?.images?.[0]}
-            type={exercice?.type}
             muscle={exercice?.muscle}
             equipment={exercice?.equipment}
             onSubmit={addExerciceInput}

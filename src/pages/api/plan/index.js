@@ -27,7 +27,6 @@ export default async function Handler(request, response) {
 
         const newExercice = await new Exercice({
           name: exerciceToUpdate.name,
-          type: exerciceToUpdate.type,
           muscle: exerciceToUpdate.muscle,
           equipment: exerciceToUpdate.equipment,
           images: exerciceToUpdate.images,

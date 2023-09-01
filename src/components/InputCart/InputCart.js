@@ -7,7 +7,6 @@ export default function InputCart({
   muscle,
   equipment,
   onSubmit,
-
   hideResult,
   setHideResult,
   image,
@@ -31,7 +30,6 @@ export default function InputCart({
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
       <img className={classes.image} src={image} alt="...waiting for image" />
-      <p>type: {type}</p>
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
       <div>

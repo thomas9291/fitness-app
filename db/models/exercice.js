@@ -4,7 +4,6 @@ const { Schema } = mongoose;
 
 const exerciceSchema = new Schema({
   name: { type: String, required: false },
-  type: { type: String, required: false },
   muscle: { type: String, required: false },
   equipment: { type: String, required: false },
   images: { type: [String], required: false },

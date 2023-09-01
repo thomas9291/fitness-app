@@ -1,6 +1,7 @@
 .filterContainer {
   display: flex;
   justify-content: center;
+  margin: 1rem;
 }
 .filterLabel {
   margin-right: 1rem;

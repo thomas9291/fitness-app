@@ -41,31 +41,8 @@ export default function CreateExercice({ onSubmit }) {
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            Type:
-          </span>
-          <input
-            type="text"
-            name="type"
-            className="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            Muscle:
-          </span>
-          <input
-            type="text"
-            name="muscle"
-            className="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div className="input-group mb-3">
+
+        {/*  <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             equipment:
           </span>
@@ -76,7 +53,7 @@ export default function CreateExercice({ onSubmit }) {
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
           />
-        </div>
+        </div> */}
         <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Max kg value:
@@ -88,6 +65,26 @@ export default function CreateExercice({ onSubmit }) {
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
           />
+        </div>
+        <div className="d-flex mb-3">
+          <div className="input-group m-1 p-1">
+            <select id="input-group-text" name="muscle" className="fs-6">
+              <option value=""> Muscle</option>
+              <option value="chest">chest</option>
+              <option value="upper back">upper back</option>
+              <option value="lower back">lower back</option>
+              <option value="legs">legs</option>
+            </select>
+          </div>
+          <div className="input-group m-1 p-1">
+            <select id="input-group-text" name="equipment" className="fs-6">
+              <option value=""> Equipment</option>
+              <option value="dumbbell">dumbbell</option>
+              <option value="barbell">barbell</option>
+              <option value="cable">cable</option>
+              <option value="machine">machine</option>
+            </select>
+          </div>
         </div>
         <button className="btn btn-success" type="submit">
           Submit
