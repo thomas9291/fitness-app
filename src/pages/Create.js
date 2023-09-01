@@ -26,7 +26,7 @@ export default function Create() {
     }
   }
 
-  if (session?.user?.name === "thomas jubin") {
+  if (session?.user?.email === "thomas.jubinsolis@gmail.com") {
     return (
       <>
         <Navbar onClick={() => signOut()} />

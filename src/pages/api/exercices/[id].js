@@ -72,10 +72,34 @@ export default async function handler(request, response) {
     return response.status(201).json({ status: "Input created" });
   }
   if (request.method === "PUT") {
-    const plan1ToDelete = await User.updateOne(
-      { _id: userId },
-      { $pull: { planWeek1: request.body._id } }
-    );
-    response.status(200).json(plan1ToDelete);
+    console.log("request body PUT from exercies id api:", request.body);
+    const bodyRequest = request.body;
+    let planToDelete;
+    if (bodyRequest.week === "week1") {
+      planToDelete = await User.updateOne(
+        { _id: userId },
+        { $pull: { planWeek1: request.body._id } }
+      );
+    }
+    if (bodyRequest.week === "week2") {
+      planToDelete = await User.updateOne(
+        { _id: userId },
+        { $pull: { planWeek2: request.body._id } }
+      );
+    }
+    if (bodyRequest.week === "week3") {
+      planToDelete = await User.updateOne(
+        { _id: userId },
+        { $pull: { planWeek3: request.body._id } }
+      );
+    }
+    if (bodyRequest.week === "week4") {
+      planToDelete = await User.updateOne(
+        { _id: userId },
+        { $pull: { planWeek4: request.body._id } }
+      );
+    }
+
+    response.status(200).json(planToDelete);
   }
 }
