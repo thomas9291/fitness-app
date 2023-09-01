@@ -16,13 +16,13 @@ export default async function Handler(request, response) {
       .populate("planWeek2")
       .populate("planWeek3")
       .populate("planWeek4");
-    console.log("user plan from pla api:", userPlans);
+    /* console.log("user plan from pla api:", userPlans); */
     return response.status(200).json(userPlans);
   }
   if (request.method === "POST") {
     try {
       if (userId) {
-        console.log("request body from plan api:", request.body);
+        /* console.log("request body from plan api:", request.body); */
         const exerciceToUpdate = request.body.filteredId;
 
         const newExercice = await new Exercice({
@@ -36,7 +36,7 @@ export default async function Handler(request, response) {
         });
         newExercice.user = userId;
 
-        console.log("new exercice from plan api:", newExercice);
+        /*  console.log("new exercice from plan api:", newExercice); */
 
         const userPlanId = await User.findById({ _id: userId });
 

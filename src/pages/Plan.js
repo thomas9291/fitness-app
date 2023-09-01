@@ -19,7 +19,7 @@ export default function Plan() {
   const week4 = userExercicesList?.planWeek4;
   const router = useRouter();
   const { data: session } = useSession();
-  console.log("userExercicesList from plan:", userExercicesList);
+
   async function handleDelete(obj) {
     const response = await fetch(`/api/exercices/${obj._id}`, {
       method: "PUT",

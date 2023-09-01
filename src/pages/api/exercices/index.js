@@ -8,9 +8,9 @@ export default async function Handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const admin = session?.user?.email === "thomas.jubinsolis@gmail.com";
-  /*  const userId = session?.user?._id; */
+  const userId = session?.user?._id;
   if (request.method === "GET") {
-    const exercices = await Exercice.find({ user: "64f07dff8148ed330e28f080" });
+    const exercices = await Exercice.find({ user: "64f1d7d5057425b87161398a" });
     return response.status(200).json(exercices);
   }
   if (request.method === "POST") {
