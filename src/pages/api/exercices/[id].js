@@ -72,10 +72,10 @@ export default async function handler(request, response) {
     return response.status(201).json({ status: "Input created" });
   }
   if (request.method === "PUT") {
-    const plansToDelete = await User.updateOne(
+    const plan1ToDelete = await User.updateOne(
       { _id: userId },
-      { $pull: { plans: request.body._id } }
+      { $pull: { planWeek1: request.body._id } }
     );
-    response.status(200).json(plansToDelete);
+    response.status(200).json(plan1ToDelete);
   }
 }
