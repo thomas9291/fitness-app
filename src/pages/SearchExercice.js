@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { useSession, signIn, signOut } from "next-auth/react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
@@ -11,13 +12,15 @@ import Link from "next/link";
 
 export default function SearchExercice() {
   const { data: session } = useSession();
+
   const router = useRouter();
-  const [filteredEquipment, setfilteredEquipment] = useState();
+  const [filteredEquipment, setfilteredEquipment] = useState("barbell");
 
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
   console.log("exerciceList from search page:", exercicesList);
+
   const filterChangeHandler = (selectedEquiment) => {
     setfilteredEquipment(selectedEquiment);
   };
@@ -68,7 +71,7 @@ export default function SearchExercice() {
   if (session) {
     return (
       <>
-        <Navbar onClick={() => signOut} />
+        <Navbar onClick={() => signOut()} />
         <h2 className="text-center">search exercices</h2>
         <SearchExerciceFilter
           selected={filteredEquipment}
