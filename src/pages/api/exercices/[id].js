@@ -71,7 +71,12 @@ export default async function handler(request, response) {
 
     return response.status(201).json({ status: "Input created" });
   }
-  if (request.method === "PUT") {
+  if (request.method === "DELETE") {
+    const planToDelete = await Exercice.findByIdAndDelete(id);
+    response.status(200).json(planToDelete);
+  }
+
+  /*   if (request.method === "PUT") {
     console.log("request body PUT from exercies id api:", request.body);
     const bodyRequest = request.body;
     let planToDelete;
@@ -101,5 +106,5 @@ export default async function handler(request, response) {
     }
 
     response.status(200).json(planToDelete);
-  }
+  } */
 }

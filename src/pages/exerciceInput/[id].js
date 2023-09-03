@@ -59,7 +59,6 @@ export default function DetaillPage() {
     );
     console.log("exercice from detaill page:", exercice);
     if (response.ok) {
-      router.push("/Plan");
       console.log("put response from detaillPage:", response);
     } else {
       console.error(response.status);
