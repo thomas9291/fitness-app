@@ -2,6 +2,7 @@ import dbConnect from "db/connect";
 import Exercice from "db/models/exercice";
 import Input from "db/models/input";
 import User from "db/models/user";
+const mongoose = require("mongoose");
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
@@ -71,6 +72,7 @@ export default async function handler(request, response) {
 
     return response.status(201).json({ status: "Input created" });
   }
+
   if (request.method === "DELETE") {
     const planToDelete = await Exercice.findByIdAndDelete(id);
     response.status(200).json(planToDelete);
@@ -80,28 +82,28 @@ export default async function handler(request, response) {
     console.log("request body PUT from exercies id api:", request.body);
     const bodyRequest = request.body;
     let planToDelete;
-    if (bodyRequest.week === "week1") {
+    if (bodyRequest.trainings === "training1") {
       planToDelete = await User.updateOne(
         { _id: userId },
-        { $pull: { planWeek1: request.body._id } }
+        { $pull: { training1: request.body._id } }
       );
     }
-    if (bodyRequest.week === "week2") {
+    if (bodyRequest.trainings === "training2") {
       planToDelete = await User.updateOne(
         { _id: userId },
-        { $pull: { planWeek2: request.body._id } }
+        { $pull: { training2: request.body._id } }
       );
     }
-    if (bodyRequest.week === "week3") {
+    if (bodyRequest.trainings === "training3") {
       planToDelete = await User.updateOne(
         { _id: userId },
-        { $pull: { planWeek3: request.body._id } }
+        { $pull: { training3: request.body._id } }
       );
     }
-    if (bodyRequest.week === "week4") {
+    if (bodyRequest.trainings === "training4") {
       planToDelete = await User.updateOne(
         { _id: userId },
-        { $pull: { planWeek4: request.body._id } }
+        { $pull: { training4: request.body._id } }
       );
     }
 

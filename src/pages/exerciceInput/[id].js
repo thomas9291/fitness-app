@@ -60,6 +60,7 @@ export default function DetaillPage() {
     console.log("exercice from detaill page:", exercice);
     if (response.ok) {
       console.log("put response from detaillPage:", response);
+      router.reload();
     } else {
       console.error(response.status);
     }

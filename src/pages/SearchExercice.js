@@ -27,19 +27,19 @@ export default function SearchExercice() {
   const filteredEquipmentExercices = exercicesList.filter(
     (element) => element.equipment === filteredEquipment
   );
-  async function handlerAddTraining(id, week) {
+  async function handlerAddTraining(id, training) {
     let filteredId = exercicesList.find((element) => element._id === id);
-    if (week === "week1") {
-      filteredId.week = "week1";
+    if (training === "training1") {
+      filteredId.trainings = "training1";
     }
-    if (week === "week2") {
-      filteredId.week = "week2";
+    if (training === "training2") {
+      filteredId.trainings = "training2";
     }
-    if (week === "week3") {
-      filteredId.week = "week3";
+    if (training === "training3") {
+      filteredId.trainings = "training3";
     }
-    if (week === "week4") {
-      filteredId.week = "week4";
+    if (training === "training4") {
+      filteredId.trainings = "training4";
     }
     const response = await fetch("/api/plan", {
       method: "POST",
@@ -95,10 +95,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    week1={() => handlerAddTraining(_id, "week1")}
-                    week2={() => handlerAddTraining(_id, "week2")}
-                    week3={() => handlerAddTraining(_id, "week3")}
-                    week4={() => handlerAddTraining(_id, "week4")}
+                    training1={() => handlerAddTraining(_id, "training1")}
+                    training2={() => handlerAddTraining(_id, "training2")}
+                    training3={() => handlerAddTraining(_id, "training3")}
+                    training4={() => handlerAddTraining(_id, "training4")}
                   />
                 </div>
               );
@@ -123,10 +123,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    week1={() => handlerAddTraining(_id, "week1")}
-                    week2={() => handlerAddTraining(_id, "week2")}
-                    week3={() => handlerAddTraining(_id, "week3")}
-                    week4={() => handlerAddTraining(_id, "week4")}
+                    training1={() => handlerAddTraining(_id, "training1")}
+                    training2={() => handlerAddTraining(_id, "training2")}
+                    training3={() => handlerAddTraining(_id, "training3")}
+                    training4={() => handlerAddTraining(_id, "training4")}
                   />
                 </div>
               );
@@ -159,10 +159,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    week1={() => handlerAddTraining(_id, "week1")}
-                    week2={() => handlerAddTraining(_id, "week2")}
-                    week3={() => handlerAddTraining(_id, "week3")}
-                    week4={() => handlerAddTraining(_id, "week4")}
+                    training1={() => handlerAddTraining(_id, "training1")}
+                    training2={() => handlerAddTraining(_id, "training2")}
+                    training3={() => handlerAddTraining(_id, "training3")}
+                    training4={() => handlerAddTraining(_id, "training4")}
                   />
                 </div>
               );
@@ -195,10 +195,10 @@ export default function SearchExercice() {
                     image={images?.[0]}
                     muscle={muscle}
                     equipment={equipment}
-                    week1={() => handlerAddTraining(_id, "week1")}
-                    week2={() => handlerAddTraining(_id, "week2")}
-                    week3={() => handlerAddTraining(_id, "week3")}
-                    week4={() => handlerAddTraining(_id, "week4")}
+                    training1={() => handlerAddTraining(_id, "training1")}
+                    training2={() => handlerAddTraining(_id, "training2")}
+                    training3={() => handlerAddTraining(_id, "training3")}
+                    training4={() => handlerAddTraining(_id, "training4")}
                   />
                 </div>
               );
