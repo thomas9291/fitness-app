@@ -13,10 +13,10 @@ export default function Plan() {
   const { data: userExercicesList, isLoading } = useSWR("/api/plan", {
     fallbackData: [],
   });
-  const week1 = userExercicesList?.planWeek1;
-  const week2 = userExercicesList?.planWeek2;
-  const week3 = userExercicesList?.planWeek3;
-  const week4 = userExercicesList?.planWeek4;
+  const trainingUnit1 = userExercicesList?.training1;
+  const trainingUnit2 = userExercicesList?.training2;
+  const trainingUnit3 = userExercicesList?.training3;
+  const trainingUnit4 = userExercicesList?.training4;
   const router = useRouter();
   const { data: session } = useSession();
 
@@ -62,11 +62,16 @@ export default function Plan() {
         </div>
       );
     }
-    if (userExercicesList.planWeek1.length === 0) {
+    if (
+      userExercicesList.training1.length === 0 &&
+      userExercicesList.training2.length === 0 &&
+      userExercicesList.training3.length === 0 &&
+      userExercicesList.training4.length === 0
+    ) {
       return (
         <>
           <Navbar />
-          <h2 className="text-center">week 1:</h2>
+          <h2 className="text-center">training 1:</h2>
           <div className="text-center d-flex flex-column justify-content-center">
             <h4 className="m-2 text-center">
               <Link className="text-decoration-none" href="/SearchExercice">
@@ -92,9 +97,9 @@ export default function Plan() {
       return (
         <>
           <Navbar onClick={() => signOut()} />
-          <h2 className="text-center">week 1:</h2>
+          <h2 className="text-center">training 1:</h2>
           <div className="searchExercicesDiv">
-            {week1?.map((element) => {
+            {trainingUnit1?.map((element) => {
               return (
                 <div key={element._id} className="text-center">
                   <AddedCart
@@ -116,9 +121,9 @@ export default function Plan() {
               );
             })}
           </div>
-          <h2 className="text-center">week 2:</h2>
+          <h2 className="text-center">training 2:</h2>
           <div className="searchExercicesDiv">
-            {week2?.map((element) => {
+            {trainingUnit2?.map((element) => {
               return (
                 <div key={element._id} className="text-center">
                   <AddedCart
@@ -140,9 +145,9 @@ export default function Plan() {
               );
             })}
           </div>
-          <h2 className="text-center">week 3:</h2>
+          <h2 className="text-center">training 3:</h2>
           <div className="searchExercicesDiv">
-            {week3?.map((element) => {
+            {trainingUnit3?.map((element) => {
               return (
                 <div key={element._id} className="text-center">
                   <AddedCart
@@ -164,9 +169,9 @@ export default function Plan() {
               );
             })}
           </div>
-          <h2 className="text-center">week 4:</h2>
+          <h2 className="text-center">training 4:</h2>
           <div className="searchExercicesDiv">
-            {week4?.map((element) => {
+            {trainingUnit4?.map((element) => {
               return (
                 <div key={element._id} className="text-center">
                   <AddedCart
