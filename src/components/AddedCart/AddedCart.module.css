@@ -9,9 +9,11 @@
   padding: 1rem;
   border-radius: 1rem;
   align-items: center;
-  box-shadow: 10px 5px 5px grey;
+  box-shadow: 5px 5px 5px black;
   min-width: 240px;
   max-width: 250px;
+  background-color: rgb(66, 55, 55);
+  color: white;
 }
 .btnContainer {
   display: flex;
@@ -39,4 +41,7 @@
   height: 90%;
   border-radius: 1rem;
   max-height: 150px;
+}
+.btn:hover {
+  transform: scale(1.2);
 }

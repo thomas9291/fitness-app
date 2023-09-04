@@ -16,6 +16,7 @@
 
 body {
   font-size: var(--font-size);
+  background: linear-gradient(0.25turn, #080101, #ffff09, #080101);
 }
 
 .containerBodySchema {

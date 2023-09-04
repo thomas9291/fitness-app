@@ -17,16 +17,16 @@ export default function ExerciceCart({
       <img className={classes.image} src={image} alt="...waiting for image" />
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
-      <button className="btn btn-success" onClick={training1}>
+      <button className={classes.btn} onClick={training1}>
         Add to training 1
       </button>
-      <button className="btn btn-success m-1" onClick={training2}>
+      <button className={classes.btn} onClick={training2}>
         Add to training 2
       </button>
-      <button className="btn btn-success m-1" onClick={training3}>
+      <button className={classes.btn} onClick={training3}>
         Add to training 3
       </button>{" "}
-      <button className="btn btn-success m-1" onClick={training4}>
+      <button className={classes.btn} onClick={training4}>
         Add to training 4
       </button>
     </div>
