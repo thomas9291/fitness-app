@@ -16,7 +16,7 @@ export default function App({
         <title>Fitness</title>
         <meta
           name="viewport"
-          http-equiv="Content-Security-Policy"
+          httpEquiv="Content-Security-Policy"
           content="width=device-width, initial-scale=1, upgrade-insecure-requests"
         />
 

@@ -72,13 +72,13 @@ export default function SearchExercice() {
     return (
       <>
         <Navbar onClick={() => signOut()} />
-        <h2 className="text-center">search exercices</h2>
+        <h2 className="text-center mt-5 p-2">search exercices</h2>
         <SearchExerciceFilter
           selected={filteredEquipment}
           onChangeFilter={filterChangeHandler}
         />
+        <h3 className="text-center">Chest</h3>
         <div className="searchExercicesDiv">
-          <h3 className="position-absolute top-0 start-50">Chest</h3>
           {filteredChestExercice.map(
             ({ name, muscle, equipment, _id, images }) => {
               return (
@@ -105,8 +105,8 @@ export default function SearchExercice() {
             }
           )}
         </div>
+        <h3 className="text-center">Upper Back</h3>
         <div className="searchExercicesDiv">
-          <h3 className="position-absolute top-0 start-50">Upper Back</h3>
           {filteredUpperBackExercice.map(
             ({ name, muscle, equipment, _id, images }) => {
               return (
@@ -133,8 +133,8 @@ export default function SearchExercice() {
             }
           )}
         </div>
+        <h3 className="text-center">Lower Back</h3>
         <div className="searchExercicesDiv">
-          <h3 className="position-absolute top-0 start-50">Lower Back</h3>
           {filteredLowerBackExercice.map(
             ({
               name,
@@ -169,8 +169,8 @@ export default function SearchExercice() {
             }
           )}
         </div>
+        <h3 className="text-center">Legs</h3>
         <div className="searchExercicesDiv">
-          <h3 className="position-absolute top-0 start-50">Legs</h3>
           {filteredLegsExercice.map(
             ({
               name,

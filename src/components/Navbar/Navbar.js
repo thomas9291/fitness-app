@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Navbar({ onClick }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
         <Link className="navbar-brand" href="/">
           Home
@@ -27,22 +27,17 @@ export default function Navbar({ onClick }) {
                 aria-current="page"
                 href="/SearchExercice"
               >
-                Search exercices
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="/Create">
-                Create exercice
+                Search-exercices
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" href="/Plan">
-                Training plan
+                Training-plan
               </Link>
             </li>
             <li className="nav-item">
               <button className="nav-link signout" onClick={onClick}>
-                Sign out
+                Sign-out
               </button>
             </li>
           </ul>

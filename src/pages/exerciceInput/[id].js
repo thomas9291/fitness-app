@@ -97,7 +97,7 @@ export default function DetaillPage() {
     return (
       <>
         <Navbar onClick={() => signOut()} />
-        <div className="text-center d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center text-center mt-5 p-2">
           <Link href={"/Plan"}>Back to the plan</Link>
           <InputCart
             name={exercice?.name}
@@ -218,7 +218,7 @@ export default function DetaillPage() {
   );
 }
 const ContainerCart = styled.div`
-  background-color: #526d82;
+  background: linear-gradient(0.25turn, #080101, #ffff09, #080101);
   color: #ffea20;
   display: flex;
   justify-content: start;
@@ -252,15 +252,16 @@ const CartItems = styled.p`
   align-items: center;
   border: 1px solid white;
   box-shadow: 5px 5px 5px #331d2c;
-
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 0.5rem;
+  color: white;
+  background-color: rgb(66, 55, 55);
 `;
 const GraphiqueItems = styled.div`
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 12px;
-  background-color: #f8dfff;
+  background-color: rgb(66, 55, 55);
   text-align: center;
   display: flex;
   justify-content: space-around;
@@ -271,14 +272,15 @@ const ChartBar = styled.div`
   width: 100%;
   border: 1px solid #313131;
   border-radius: 12px;
-  background-color: #c3b4f3;
+  background-color: #ffff00;
+  opacity: 0.33;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 `;
 const ChartBarFill = styled.div`
-  background-color: #4826b9;
+  background-color: #9d0000;
   width: 100%;
   transition: all 0.3s ease-out;
 `;
@@ -286,7 +288,7 @@ const ChartBarLabel = styled.div`
   font-weight: bold;
   font-size: 0.5rem;
   text-align: center;
-  color: black;
+  color: white;
   display: flex;
   max-width: 1.5rem;
 `;

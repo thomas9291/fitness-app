@@ -9,9 +9,11 @@
   padding: 1rem;
   border-radius: 1rem;
   align-items: center;
-  box-shadow: 10px 5px 5px grey;
+  box-shadow: 5px 5px 5px black;
   min-width: 240px;
   max-width: 250px;
+  background-color: rgb(66, 55, 55);
+  color: white;
 }
 @media screen and (min-width: 700px) {
   .containerCart {
@@ -29,4 +31,13 @@
   height: 90%;
   border-radius: 1rem;
   max-height: 150px;
+}
+.btn {
+  background-color: rgb(201, 178, 32);
+  color: black;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+}
+.btn:hover {
+  transform: scale(1.2);
 }

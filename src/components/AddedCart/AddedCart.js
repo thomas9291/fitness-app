@@ -13,8 +13,8 @@ export default function AddedCart({
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
       <img className={classes.image} src={image} alt="...waiting for image" />
-      <p className="text-success">muscle: {muscle}</p>
-      <p className="text-primary">equipment: {equipment}</p>
+      <p>muscle: {muscle}</p>
+      <p c>equipment: {equipment}</p>
       <div className={classes.btnContainer}>
         <button className="btn btn-danger m-1" onClick={onDelete}>
           Delete
