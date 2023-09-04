@@ -280,7 +280,7 @@ const ChartBar = styled.div`
   justify-content: flex-end;
 `;
 const ChartBarFill = styled.div`
-  background-color: #9d0000;
+  background-color: #952323;
   width: 100%;
   transition: all 0.3s ease-out;
 `;
