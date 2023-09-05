@@ -31,12 +31,14 @@
   height: 90%;
   border-radius: 1rem;
   max-height: 150px;
+  min-height: 140px;
 }
 .btn {
   background-color: rgb(201, 178, 32);
   color: black;
   margin: 0.2rem;
   border-radius: 0.5rem;
+  padding: 0.5rem;
 }
 .btn:hover {
   transform: scale(1.2);

@@ -36,4 +36,5 @@
   height: 90%;
   border-radius: 1rem;
   max-height: 150px;
+  min-height: 140px;
 }
