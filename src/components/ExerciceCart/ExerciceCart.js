@@ -13,10 +13,10 @@ export default function ExerciceCart({
 }) {
   return (
     <div className={classes.containerCart}>
-      <h4>name: {name}</h4>
+      <h4> {name}</h4>
       <img className={classes.image} src={image} alt="...waiting for image" />
-      <p>muscle: {muscle}</p>
-      <p>equipment: {equipment}</p>
+      <p className="mt-2"> {muscle}</p>
+      <p> {equipment}</p>
       <button className={classes.btn} onClick={training1}>
         Add to training 1
       </button>
