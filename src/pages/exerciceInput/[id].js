@@ -155,7 +155,9 @@ export default function DetaillPage() {
                     }}
                     key={element._id}
                   >
-                    <ChartBarLabel>max: {element.repMax}kg</ChartBarLabel>
+                    <ChartBarLabel>
+                      max: {Math.round(element.repMax)}kg
+                    </ChartBarLabel>
                     <ChartBar>
                       <ChartBarFill
                         style={{

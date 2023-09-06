@@ -5,19 +5,32 @@ import Head from "next/head";
 
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
+import { useEffect } from "react";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
+  useEffect(() => {
+    // Personnalisez l'en-tête HTTP avec la CSP
+    const cspValue =
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; frame-ancestors 'self';";
+
+    const metaCSP = document.querySelector(
+      'meta[http-equiv="Content-Security-Policy"]'
+    );
+    if (metaCSP) {
+      metaCSP.setAttribute("content", cspValue);
+    }
+  }, []);
   return (
     <>
       <Head>
         <title>Fitness</title>
         <meta
           name="viewport"
-          httpEquiv="Content-Security-Policy"
-          content="width=device-width, initial-scale=1, upgrade-insecure-requests"
+          /*  httpEquiv="Content-Security-Policy"
+          content="width-device=width , initial-scale=1, upgrade-insecure-requests,viewport-fit=cover," */
         />
 
         <link
