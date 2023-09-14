@@ -184,9 +184,10 @@ export default function DetaillPage() {
             {filteredGraphique?.map((element) => {
               return (
                 <ContainerCartItems key={element._id}>
-                  <CartItems>date: {element.createDate.slice(0, 10)}</CartItems>
-                  <CartItems>weigth: {element.weight}kg</CartItems>
-                  <CartItems>repetition: {element.reps}</CartItems>
+                  <CartItems>{element.createDate.slice(0, 10)}</CartItems>
+                  <CartItems>
+                    {element.reps} x {element.weight}kg
+                  </CartItems>
                 </ContainerCartItems>
               );
             })}
