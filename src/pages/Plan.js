@@ -37,10 +37,12 @@ export default function Plan() {
   } */
 
   async function handleDelete(id) {
-    await fetch(`/api/exercices/${id}`, {
-      method: "DELETE",
-    });
-    router.reload();
+    if (confirm("are you sure you want to delete?")) {
+      await fetch(`/api/exercices/${id}`, {
+        method: "DELETE",
+      });
+      router.reload();
+    }
   }
 
   if (session) {
