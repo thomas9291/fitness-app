@@ -14,11 +14,11 @@ export default function App({
   return (
     <>
       <Head>
-        <title>Fitness</title>
+        <title>Fitness App</title>
         <meta
           name="viewport"
-          httpEquiv="Content-Security-Policy"
-          content="width-device=width , initial-scale=1, upgrade-insecure-requests,viewport-fit=cover,"
+          /* httpEquiv="Content-Security-Policy" */
+          content="initial-scale=1.0, width=device-width"
         />
 
         <link
