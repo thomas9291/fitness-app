@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-import Navbar from "@/components/Navbar/Navbar";
 import ExerciceCart from "@/components/ExerciceCart/ExerciceCart";
 import SearchExerciceFilter from "@/components/SearchExerciceFilter/SearchExerciceFilter";
 import Image from "next/image";
@@ -71,8 +70,7 @@ export default function SearchExercice() {
   if (session) {
     return (
       <>
-        <Navbar onClick={() => signOut()} />
-        <h2 className="text-center mt-5 p-2">search exercices</h2>
+        <h2 className="text-center mt-1 p-2">search exercices</h2>
         <SearchExerciceFilter
           selected={filteredEquipment}
           onChangeFilter={filterChangeHandler}
@@ -211,8 +209,6 @@ export default function SearchExercice() {
   if (exercicesList.length === 0) {
     return (
       <>
-        <Navbar onClick={() => signOut} />
-
         <div className="text-center d-flex flex-column justify-content-center">
           <h2>search exercices</h2>
           <p> ...waiting for exercices</p>

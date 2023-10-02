@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import Navbar from "@/components/Navbar/Navbar";
+
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import InputCart from "@/components/InputCart/InputCart";
@@ -96,8 +96,7 @@ export default function DetaillPage() {
   if (session) {
     return (
       <>
-        <Navbar onClick={() => signOut()} />
-        <div className="d-flex flex-column align-items-center text-center mt-5 p-2">
+        <div className="d-flex flex-column align-items-center text-center mt-1 p-2">
           <Link href={"/Plan"}>Back to the plan</Link>
           <InputCart
             name={exercice?.name}

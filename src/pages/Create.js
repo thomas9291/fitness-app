@@ -3,7 +3,6 @@ import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import CreateExercice from "@/components/CreateExercice/CreateExercice";
 import { useRouter } from "next/router";
-import Navbar from "@/components/Navbar/Navbar";
 
 export default function Create() {
   const { data: session } = useSession();
@@ -29,7 +28,6 @@ export default function Create() {
   if (session?.user?.email === "thomas.jubinsolis@gmail.com") {
     return (
       <>
-        <Navbar onClick={() => signOut()} />
         <h2 className="text-center mt-2">Create a exercice</h2>
 
         <CreateExercice onSubmit={addExercice} />
