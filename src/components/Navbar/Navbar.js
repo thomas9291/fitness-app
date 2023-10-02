@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Navbar({ onClick }) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
         <Link className="navbar-brand" href="/">
           Home

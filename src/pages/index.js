@@ -12,7 +12,7 @@ export default function HomePage() {
   }
   return (
     <>
-      <Navbar onClick={() => signOut()} />
+      {/*  <Navbar onClick={() => signOut()} /> */}
       <div className={classes.containerBody}>
         <SigninBtnContainer>
           <button className="btn btn-success btn-sm" onClick={handlerSigin}>

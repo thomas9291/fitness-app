@@ -72,7 +72,7 @@ export default function Plan() {
     ) {
       return (
         <>
-          <Navbar onClick={() => signOut()} />
+          {/* <Navbar onClick={() => signOut()} /> */}
           <h2 className="text-center mt-5 p-2">training 1:</h2>
           <div className="text-center d-flex flex-column justify-content-center">
             <h4 className="m-2 text-center">
@@ -98,8 +98,8 @@ export default function Plan() {
     if (userExercicesList) {
       return (
         <>
-          <Navbar onClick={() => signOut()} />
-          <h2 className="text-center mt-5 p-2">training 1:</h2>
+          {/* <Navbar onClick={() => signOut()} /> */}
+          <h2 className="text-center mt-1 p-2">training 1:</h2>
           <div className="searchExercicesDiv">
             {trainingUnit1?.map((element) => {
               return (

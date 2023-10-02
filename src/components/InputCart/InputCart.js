@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import classes from "./InputCart.module.css";
 
+import Image from "next/image";
+
 export default function InputCart({
   name,
   type,
@@ -29,7 +31,14 @@ export default function InputCart({
   return (
     <div className={classes.containerCart}>
       <h4>name: {name}</h4>
-      <img className={classes.image} src={image} alt="...waiting for image" />
+      <div className={classes.image}>
+        <Image
+          src={image}
+          alt="...waiting for image"
+          width={200}
+          height={150}
+        />
+      </div>
       <p>muscle: {muscle}</p>
       <p>equipment: {equipment}</p>
       <div>
