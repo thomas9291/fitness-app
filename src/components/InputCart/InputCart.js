@@ -5,7 +5,6 @@ import Image from "next/image";
 
 export default function InputCart({
   name,
-  type,
   muscle,
   equipment,
   onSubmit,
@@ -30,7 +29,7 @@ export default function InputCart({
   };
   return (
     <div className={classes.containerCart}>
-      <h4>name: {name}</h4>
+      <h4>{name}</h4>
       <div className={classes.image}>
         <Image
           src={image}
@@ -39,8 +38,8 @@ export default function InputCart({
           height={150}
         />
       </div>
-      <p>muscle: {muscle}</p>
-      <p>equipment: {equipment}</p>
+      <p>{muscle}</p>
+      <p>{equipment}</p>
       <div>
         <button className="btn btn-success" onClick={handlerHideForm}>
           {hideForm ? "Back" : "Add Info"}
