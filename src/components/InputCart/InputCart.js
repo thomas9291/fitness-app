@@ -58,6 +58,7 @@ export default function InputCart({
             <input
               type="text"
               name="weight"
+              required
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -70,6 +71,7 @@ export default function InputCart({
             <input
               type="text"
               name="reps"
+              required
               className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -77,7 +79,12 @@ export default function InputCart({
           </div>
 
           <div className="input-group mb-3">
-            <select id="input-group-text" name="serieTarget" className="fs-6">
+            <select
+              id="input-group-text"
+              name="serieTarget"
+              className="fs-6"
+              required
+            >
               <option value=""> next reps target</option>
               <option value="1">1</option>
               <option value="3">3</option>
