@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar/Navbar";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import VideoComponent from "@/components/VideoComponent/VideoComponent";
 import styled from "styled-components";
 import classes from "../styles/Home.module.css";
@@ -12,7 +11,6 @@ export default function HomePage() {
   }
   return (
     <>
-      {/*  <Navbar onClick={() => signOut()} /> */}
       <div className={classes.containerBody}>
         <SigninBtnContainer>
           <button className="btn btn-success btn-sm" onClick={handlerSigin}>

@@ -1,13 +1,12 @@
 import React from "react";
 
 import useSWR from "swr";
-import Navbar from "@/components/Navbar/Navbar";
 import Link from "next/link";
 import AddedCart from "@/components/AddedCart/AddedCart";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 export default function Plan() {
   const { data: userExercicesList, isLoading } = useSWR("/api/plan", {
