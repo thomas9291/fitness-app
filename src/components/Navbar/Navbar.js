@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { useSession, signOut } from "next-auth/react";
 
-export default function Navbar({ onClick }) {
+export default function Navbar() {
+  const { data: session } = useSession();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
@@ -21,25 +24,31 @@ export default function Navbar({ onClick }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="nav-link "
-                aria-current="page"
-                href="/SearchExercice"
-              >
-                Search-exercices
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" href="/Plan">
-                Training-plan
-              </Link>
-            </li>
-            <li className="nav-item">
-              <button className="nav-link signout" onClick={onClick}>
-                Sign-out
-              </button>
-            </li>
+            {session && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link "
+                  aria-current="page"
+                  href="/SearchExercice"
+                >
+                  Search-exercices
+                </Link>
+              </li>
+            )}
+            {session && (
+              <li className="nav-item">
+                <Link className="nav-link" href="/Plan">
+                  Training-plan
+                </Link>
+              </li>
+            )}
+            {session && (
+              <li className="nav-item">
+                <button className="nav-link signout" onClick={() => signOut()}>
+                  Sign-out
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
