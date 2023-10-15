@@ -18,7 +18,6 @@ export default function SearchExercice() {
   const { data: exercicesList, isLoading } = useSWR("/api/exercices", {
     fallbackData: [],
   });
-  console.log("exerciceList from search page:", exercicesList);
 
   const filterChangeHandler = (selectedEquiment) => {
     setfilteredEquipment(selectedEquiment);

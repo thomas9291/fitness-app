@@ -23,7 +23,6 @@ export default function InputCart({
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("data from form added cart:", data);
     onSubmit(data);
     event.target.reset();
   };

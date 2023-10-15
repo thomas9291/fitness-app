@@ -19,7 +19,6 @@ export default function DetaillPage() {
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
 
-  console.log("exercice from id api:", exercice);
   function getSerie(key) {
     const pourcentageRep = {
       1: 10,
@@ -53,20 +52,12 @@ export default function DetaillPage() {
     let targetSerieFinal = c * targetSerie;
     let d = targetSerieFinal / 10;
     let adaptationCalcul = Math.round(d * 10.5);
-    console.log(
-      "adaptation calcul from detaill page post req:",
-      adaptationCalcul
-    );
-    console.log("exercice from detaill page:", exercice);
     if (response.ok) {
-      console.log("put response from detaillPage:", response);
       router.reload();
     } else {
       console.error(response.status);
     }
   }
-
-  console.log("exercice from id detaill page:", exercice);
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);

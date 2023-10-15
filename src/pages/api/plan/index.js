@@ -9,6 +9,7 @@ export default async function Handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
 
   const userId = session?.user?._id;
+
   if (request.method === "GET") {
     //the user is now connected to the session by the id
     const userPlans = await User.findOne({ _id: userId })
@@ -16,13 +17,11 @@ export default async function Handler(request, response) {
       .populate("training2")
       .populate("training3")
       .populate("training4");
-    /* console.log("user plan from pla api:", userPlans); */
     return response.status(200).json(userPlans);
   }
   if (request.method === "POST") {
     try {
       if (userId) {
-        /* console.log("request body from plan api:", request.body); */
         const exerciceToUpdate = request.body.filteredId;
 
         const newExercice = await new Exercice({
@@ -34,8 +33,6 @@ export default async function Handler(request, response) {
           trainings: exerciceToUpdate.trainings,
         });
         newExercice.user = userId;
-
-        /*  console.log("new exercice from plan api:", newExercice); */
 
         const userPlanId = await User.findById({ _id: userId });
 
