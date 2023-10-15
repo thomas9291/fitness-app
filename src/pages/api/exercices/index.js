@@ -9,6 +9,7 @@ export default async function Handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
   const admin = session?.user?.email === "thomas.jubinsolis@gmail.com";
   const userId = session?.user?._id;
+
   if (request.method === "GET") {
     const exercices = await Exercice.find({ user: "64f1d7d5057425b87161398a" });
     return response.status(200).json(exercices);
@@ -17,7 +18,6 @@ export default async function Handler(request, response) {
     try {
       if (admin) {
         const exerciceData = request.body;
-        console.log("execice data from api:", exerciceData);
         const exercice = new Exercice(exerciceData);
         exercice.user = userId;
         await exercice.save();

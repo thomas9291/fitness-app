@@ -1,7 +1,6 @@
 import dbConnect from "db/connect";
 import Exercice from "db/models/exercice";
 import Input from "db/models/input";
-import User from "db/models/user";
 const mongoose = require("mongoose");
 
 import { getServerSession } from "next-auth";
@@ -12,8 +11,6 @@ export default async function handler(request, response) {
   const { id } = request.query;
   const session = await getServerSession(request, response, authOptions);
   const userId = session?.user?._id;
-
-  console.log("query id from api exercices id:", id);
 
   function getSerie(key) {
     const pourcentageRep = {
@@ -26,6 +23,7 @@ export default async function handler(request, response) {
 
     return pourcentageRep[key];
   }
+  //make sure thas nobody can connect without a session from postman for exemple!
 
   if (!id) {
     return response.status(404).json({ status: "Not Found" });
@@ -33,13 +31,9 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const exercice = await Exercice.findById(id).populate("result");
 
-    console.log("exercice from exercices id api:", exercice);
-    /*  const userExercice = await User.exerciceUser.push(exercice); */
-
     if (!exercice || !exercice._id) {
       return response.status(404).json({ status: "Not Found" });
     }
-    /* console.log("userExercice from api exercice api:", userExercice); */
     response.status(200).json(exercice);
   }
   if (request.method === "POST") {
@@ -77,36 +71,4 @@ export default async function handler(request, response) {
     const planToDelete = await Exercice.findByIdAndDelete(id);
     response.status(200).json(planToDelete);
   }
-
-  /*   if (request.method === "PUT") {
-    console.log("request body PUT from exercies id api:", request.body);
-    const bodyRequest = request.body;
-    let planToDelete;
-    if (bodyRequest.trainings === "training1") {
-      planToDelete = await User.updateOne(
-        { _id: userId },
-        { $pull: { training1: request.body._id } }
-      );
-    }
-    if (bodyRequest.trainings === "training2") {
-      planToDelete = await User.updateOne(
-        { _id: userId },
-        { $pull: { training2: request.body._id } }
-      );
-    }
-    if (bodyRequest.trainings === "training3") {
-      planToDelete = await User.updateOne(
-        { _id: userId },
-        { $pull: { training3: request.body._id } }
-      );
-    }
-    if (bodyRequest.trainings === "training4") {
-      planToDelete = await User.updateOne(
-        { _id: userId },
-        { $pull: { training4: request.body._id } }
-      );
-    }
-
-    response.status(200).json(planToDelete);
-  } */
 }

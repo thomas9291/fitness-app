@@ -19,7 +19,6 @@ export default function CreateExercice({ onSubmit }) {
     const formData = new FormData(event.target);
 
     const data = Object.fromEntries(formData);
-    console.log("data from form exercice:", data);
     onSubmit(data);
     event.target.reset();
   }
