@@ -6,6 +6,8 @@ import AddedCart from "@/components/AddedCart/AddedCart";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
+import LoadingGirl from "@/components/loadingGirl";
+
 import { useSession, signIn } from "next-auth/react";
 
 export default function Plan() {
@@ -19,22 +21,6 @@ export default function Plan() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  /* async function handleDelete(obj) {
-    const response = await fetch(`/api/exercices/${obj._id}`, {
-      method: "PUT",
-      body: JSON.stringify(obj),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      await response.json();
-      router.reload();
-    } else {
-      console.error(`Error:${response.status}`);
-    }
-  } */
-
   async function handleDelete(id) {
     if (confirm("are you sure you want to delete?")) {
       await fetch(`/api/exercices/${id}`, {
@@ -46,22 +32,7 @@ export default function Plan() {
 
   if (session) {
     if (isLoading) {
-      return (
-        <div className="text-center d-flex justify-content-center mt-5">
-          <p className="text-center mt-5">...is loading</p>
-          <Image
-            src="https://plus.unsplash.com/premium_photo-1672784160207-03d75e2b83a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Zml0bmVzcyUyMGdpcmx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60"
-            alt="fitness girl"
-            width={200}
-            height={200}
-            style={{
-              borderRadius: "1rem",
-              boxShadow: "10px 5px 5px grey",
-              margin: "auto",
-            }}
-          />
-        </div>
-      );
+      return <LoadingGirl />;
     }
     if (
       userExercicesList.training1.length === 0 &&
@@ -71,7 +42,6 @@ export default function Plan() {
     ) {
       return (
         <>
-          {/* <Navbar onClick={() => signOut()} /> */}
           <h2 className="text-center mt-5 p-2">training 1:</h2>
           <div className="text-center d-flex flex-column justify-content-center">
             <h4 className="m-2 text-center">
@@ -97,7 +67,6 @@ export default function Plan() {
     if (userExercicesList) {
       return (
         <>
-          {/* <Navbar onClick={() => signOut()} /> */}
           <h2 className="text-center mt-1 p-2">training 1:</h2>
           <div className="searchExercicesDiv">
             {trainingUnit1?.map((element) => {
