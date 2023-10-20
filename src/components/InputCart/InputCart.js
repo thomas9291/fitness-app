@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./InputCart.module.css";
-
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 export default function InputCart({
@@ -13,11 +13,13 @@ export default function InputCart({
   image,
 }) {
   const [hideForm, setHideForm] = useState(false);
+  const router = useRouter();
   function handlerHideForm() {
     setHideForm(!hideForm);
   }
   function handlerHideResult() {
     setHideResult(!hideResult);
+    router.push("#resultContainer");
   }
   const handlerInputData = (event) => {
     event.preventDefault();
