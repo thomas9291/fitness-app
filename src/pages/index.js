@@ -22,15 +22,16 @@ export default function HomePage() {
             <br /> note your performances and follow the adaptation plan.
             <br /> Monitor your progress thanks to the graph and train hard.{" "}
           </p>
+          <p>For more details, watch the video below:</p>
+          <SigninBtnContainer>
+            <button className="btn btn-success btn-lg" onClick={handlerSigin}>
+              {signin ? "Back" : "Sign in"}
+            </button>
+          </SigninBtnContainer>
         </div>
-        <SigninBtnContainer>
-          <button className="btn btn-success btn-sm" onClick={handlerSigin}>
-            {signin ? "Back" : "Sign in"}
-          </button>
-        </SigninBtnContainer>
         {signin && (
           <div
-            className="d-flex flex-column card mx-auto mt-5 p-2"
+            className="d-flex flex-column card mx-auto mt-1 p-2"
             style={{ width: "30%" }}
           >
             <h4 className="text-center"> Not signed in </h4>
@@ -62,7 +63,7 @@ const ContainerVideo = styled.div`
   border-radius: 1rem;
 `;
 const SigninBtnContainer = styled.div`
-  margin-top: 5rem;
   display: flex;
+  padding: 1rem;
   justify-content: center;
 `;
