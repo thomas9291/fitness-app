@@ -1,23 +1,25 @@
 import mongoose from "mongoose";
+
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  name: { type: String, required: false },
-  email: {
-    type: String,
-    require: true,
-    index: true,
-    unique: true,
-    sparse: true,
+let newDate = new Date().toLocaleString();
+const inputSchema = new Schema({
+  createDate: {
+    type: Date,
+    default: () => newDate,
   },
-  training1: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
-  training2: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
-  training3: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
-  training4: [{ type: Schema.Types.ObjectId, ref: "Exercice" }],
+
+  weight: { type: Number, required: true },
+  reps: { type: Number, required: true },
+  repMax: { type: Number, required: false },
+  serieTarget: { type: Number, required: false },
+  adaptation: { type: Number, required: false },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+  exerciceInput: { type: Schema.Types.ObjectId, ref: "Exercice" },
 });
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const Input = mongoose.models.Input || mongoose.model("Input", inputSchema);
 
-export default User;
+export default Input;
 
-/* export default userSchema; */
+/* export default inputSchema; */

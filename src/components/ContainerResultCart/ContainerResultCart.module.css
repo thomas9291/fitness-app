@@ -6,14 +6,14 @@
   border-radius: 1rem;
   box-shadow: 5px 5px 5px #331d2c;
   align-items: flex-start;
-  animation: 2s slidein;
+  animation: 2s slideIn;
   background-color: rgb(66, 55, 55);
   color: white;
   padding: 1rem;
   margin: 0.2rem;
 }
 
-@keyframes slidein {
+@keyframes slideIn {
   from {
     transform: scale(0);
   }

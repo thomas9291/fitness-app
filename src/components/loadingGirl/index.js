@@ -12,7 +12,6 @@ const LoadingGirl = () => {
         height={200}
         style={{
           borderRadius: "1rem",
-          boxShadow: "10px 5px 5px grey",
           margin: "auto",
         }}
       />
