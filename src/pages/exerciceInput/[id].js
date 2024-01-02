@@ -20,18 +20,6 @@ export default function DetaillPage() {
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
 
-  function getSerie(key) {
-    const pourcentageRep = {
-      1: 10,
-      3: 9,
-      5: 8.5,
-      10: 7.5,
-      20: 6,
-    };
-
-    return pourcentageRep[key];
-  }
-
   async function addExerciceInput(exerciceInput) {
     const response = await fetch(`/api/exercices/${id}?id=${id}`, {
       method: "POST",
