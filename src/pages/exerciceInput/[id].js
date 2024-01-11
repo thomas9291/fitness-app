@@ -15,7 +15,7 @@ import LoadingGirl from "@/components/loadingGirl";
 export default function DetaillPage() {
   const router = useRouter();
   const [hideResult, setHideResult] = useState(false);
-  const [filteredYear, setFilteredYear] = useState("2023");
+  const [filteredYear, setFilteredYear] = useState("2024");
   const { id } = router.query;
   const { data: session } = useSession();
   const { data: exercice, isLoading } = useSWR(`/api/exercices/${id}`);
