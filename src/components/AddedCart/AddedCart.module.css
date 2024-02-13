@@ -12,8 +12,15 @@
   box-shadow: 5px 5px 5px black;
   min-width: 240px;
   max-width: 250px;
-  background-color: rgb(66, 55, 55);
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--primary-normal);
+}
+.containerCart p {
+  color: var(--primary-light);
+}
+.image {
+  border: 10px;
+  overflow: hidden;
 }
 .btnContainer {
   display: flex;

@@ -50,7 +50,9 @@ export default function DetaillPage() {
     return (
       <>
         <div className="d-flex flex-column align-items-center text-center mt-1 p-2">
-          <Link href={"/Plan"}>Back to the plan</Link>
+          <Link href={"/Plan"} className="text-decoration-none text-dark">
+            Back to the plan
+          </Link>
           <InputCart
             name={exercice?.name}
             image={exercice?.images?.[0]}
@@ -68,16 +70,18 @@ export default function DetaillPage() {
                 if (index === exercice.result.length - 1) {
                   return (
                     <div key={element?._id} id="resultContainer">
-                      <h2 className="m-1">next training:</h2>
-                      <p>
+                      <h2 className="m-1 text-secondary">next training:</h2>
+                      <p className="text-secondary">
                         weight:{" "}
-                        <span className="text-info">
+                        <span className="text-success">
                           {element?.adaptation}kg
                         </span>
                       </p>
-                      <p>
+                      <p className="text-secondary">
                         repetition:{" "}
-                        <span className="text-info">{element.serieTarget}</span>
+                        <span className="text-success">
+                          {element.serieTarget}
+                        </span>
                       </p>
                     </div>
                   );
@@ -173,7 +177,12 @@ export default function DetaillPage() {
   );
 }
 const ContainerCart = styled.div`
-  background: linear-gradient(0.25turn, #080101, #ffff09, #080101);
+  background: linear-gradient(
+    0.25turn,
+    var(--primary-dark),
+    var(--primary-normal),
+    var(--primary-dark)
+  );
   color: #ffea20;
   display: flex;
   justify-content: start;
@@ -211,12 +220,13 @@ const CartItems = styled.p`
   padding: 0.5rem;
   margin: 0.5rem;
   color: white;
-  background-color: rgb(66, 55, 55);
+  background-color: var(--primary-dark);
+  color: var(--primary-normal);
 `;
 const GraphiqueItems = styled.div`
   padding: 0.5rem;
   border-radius: 12px;
-  background-color: rgb(66, 55, 55);
+  background-color: var(--primary-dark);
   text-align: center;
   display: flex;
   justify-content: space-around;

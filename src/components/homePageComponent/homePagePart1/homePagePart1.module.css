@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  margin: 16px 0.5rem 0 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card {
+  margin: 0.2rem;
+  background-color: var(--primary-dark);
+  min-width: 120px;
+  height: 18px;
+  border-radius: 6px;
+}
+.card p {
+  font-size: 10px;
+  font-weight: normal;
+  color: var(--primary-normal);
+  text-align: center;
+}
+@media screen and (min-width: 810px) {
+  .container {
+    margin: 42px 1rem 0 1rem;
+  }
+  .card {
+    width: 275px;
+    height: 65px;
+    border-radius: 2rem;
+    box-shadow: 0 0 10px var(--primary-dark);
+    margin: 1rem;
+  }
+  .card p {
+    font-size: 24px;
+    padding: 1rem;
+  }
+}

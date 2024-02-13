@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
-import VideoComponent from "@/components/VideoComponent/VideoComponent";
-import styled from "styled-components";
 import classes from "../styles/Home.module.css";
+import HomePagePart1 from "@/components/homePageComponent/homePagePart1";
+import HomePagePart2 from "@/components/homePageComponent/homePagePart2";
+import HomePagePart3 from "@/components/homePageComponent/homePagePart3";
+import HomePagePart4 from "@/components/homePageComponent/homePagePart4";
 
 export default function HomePage() {
   const [signin, setSigin] = useState(false);
@@ -12,23 +14,12 @@ export default function HomePage() {
   return (
     <>
       <div className={classes.containerBody}>
-        <div className="textContainer">
-          <h1>Fitness App</h1>
-          <p>
-            website based on the full body principle,
-            <br /> here you will find exercises made to train your muscular
-            chains.
-            <br /> Create your training plan,
-            <br /> note your performances and follow the adaptation plan.
-            <br /> Monitor your progress thanks to the graph and train hard.{" "}
-          </p>
-          <p>For more details, watch the video below:</p>
-          <SigninBtnContainer>
-            <button className="btn btn-success btn-lg" onClick={handlerSigin}>
-              {signin ? "Back" : "Sign in"}
-            </button>
-          </SigninBtnContainer>
+        <div>
+          <button className={classes.btn} onClick={handlerSigin}>
+            {signin ? "Back" : "Sign in"}
+          </button>
         </div>
+        <h1>Fitness App</h1>
         {signin && (
           <div
             className="d-flex flex-column card mx-auto mt-1 p-2"
@@ -45,25 +36,13 @@ export default function HomePage() {
             </button>
           </div>
         )}
-        <ContainerVideo>
-          <VideoComponent />
-        </ContainerVideo>
+        <div>
+          <HomePagePart1 />
+          <HomePagePart2 />
+          <HomePagePart3 />
+          <HomePagePart4 />
+        </div>
       </div>
     </>
   );
 }
-
-const ContainerVideo = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.1rem;
-  background: linear-gradient(black, white);
-  border-radius: 1rem;
-`;
-const SigninBtnContainer = styled.div`
-  display: flex;
-  padding: 1rem;
-  justify-content: center;
-`;

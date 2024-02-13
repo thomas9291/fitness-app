@@ -12,8 +12,15 @@
   box-shadow: 5px 5px 5px black;
   min-width: 240px;
   max-width: 250px;
-  background-color: rgb(66, 55, 55);
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--primary-normal);
+}
+.containerCart p {
+  color: var(--primary-light);
+}
+.containerCart h4 {
+  width: 80%;
+  text-align: center;
 }
 @media screen and (min-width: 700px) {
   .containerCart {
@@ -32,10 +39,12 @@
   border-radius: 1rem;
   max-height: 150px;
   min-height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .btn {
-  background-color: rgb(201, 178, 32);
-  color: black;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
   margin: 0.2rem;
   border-radius: 0.5rem;
   padding: 0.5rem;
