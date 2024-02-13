@@ -1,9 +1,29 @@
 .containerBody {
-  height: 75vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
+  width: 100%;
+}
+.btn {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  padding: 5px 19px 5px 19px;
+  border-radius: 19px;
+  background-color: #124924;
+  color: white;
+  box-shadow: 0 0 10px black;
+  z-index: 3;
+}
+.containerBody h1 {
+  text-align: center;
+  margin: 50px 0 0 0;
+  color: var(--primary-dark);
+  font-size: 50px;
+  font-weight: bold;
+}
+@media screen and (min-width: 810px) {
+  .btn {
+    top: 100px;
+  }
+  .containerBody h1 {
+    font-size: 96px;
+  }
 }

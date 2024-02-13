@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  margin: -8px 0.5rem 0 0.5rem;
+}
+.container h1 {
+  text-align: center;
+  color: var(--primary-dark);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 810px) {
+  .container h1 {
+    font-size: 40px;
+  }
+}

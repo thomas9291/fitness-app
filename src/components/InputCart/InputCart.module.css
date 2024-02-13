@@ -12,8 +12,11 @@
   box-shadow: 5px 5px 5px black;
   min-width: 240px;
   max-width: 250px;
-  background-color: rgb(66, 55, 55);
-  color: white;
+  background-color: var(--primary-dark);
+  color: var(--primary-normal);
+}
+.containerCart p {
+  color: var(--primary-light);
 }
 .formContainer {
   display: flex;
@@ -34,7 +37,8 @@
 .image {
   width: 90%;
   height: 90%;
-  border-radius: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
   max-height: 150px;
   min-height: 140px;
 }
