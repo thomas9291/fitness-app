@@ -19,7 +19,7 @@ export default function AddedCart({
           src={image}
           alt="...waiting for image"
           width={200}
-          height={150}
+          height={200}
           priority
         />
       </div>

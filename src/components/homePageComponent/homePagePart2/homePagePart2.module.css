@@ -13,6 +13,30 @@
   overflow-x: scroll;
   margin-top: 18px;
 }
+.cards {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  justify-content: center;
+  align-content: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  align-items: center;
+  box-shadow: 5px 5px 5px black;
+  min-width: 240px;
+  max-width: 250px;
+  background-color: var(--primary-dark);
+  color: var(--primary-normal);
+}
+.imgContainer {
+  width: 80%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+}
+
 @media screen and (min-width: 810px) {
   .container h1 {
     font-size: 40px;

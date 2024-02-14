@@ -192,7 +192,7 @@ const ContainerCart = styled.div`
   padding: 1rem;
   overflow: hidden;
   overflow-x: scroll;
-  width: 100%;
+  width: 90%;
   border-radius: 1rem;
   align-content: center;
   align-items: center;
