@@ -26,7 +26,7 @@ export default function AddedCart({
       <p className="mt-2"> {muscle}</p>
       <p> {equipment}</p>
       <div className={classes.btnContainer}>
-        <button className="btn btn-warning  m-1" onClick={onDelete}>
+        <button className="btn btn-danger  m-1" onClick={onDelete}>
           Delete
         </button>
         <button className="btn btn-success ">{linkedId}</button>
