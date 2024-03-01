@@ -70,7 +70,7 @@ export default function SearchExercice() {
   if (session) {
     return (
       <>
-        <h2 className="text-center mt-1 p-2">search exercices</h2>
+        <h2 className="text-center mt-1 p-2 ">search exercices</h2>
         <SearchExerciceFilter
           selected={filteredEquipment}
           onChangeFilter={filterChangeHandler}

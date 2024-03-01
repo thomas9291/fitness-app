@@ -17,11 +17,19 @@
 body {
   font-size: var(--font-size);
   background-color: var(--primary-normal);
-  --primary-normal: #aeb530;
-  --primary-dark: #34360f;
-  --primary-light: #a8ab78;
+  --primary-normal: #635540de;
+  --primary-dark: #202109;
+  --primary-light: #c39d68de;
+  --primary-letter: #aeb530;
 }
-
+h1,
+h2,
+h4 {
+  color: var(--primary-letter);
+}
+p {
+  color: var(--primary-normal);
+}
 .containerBodySchema {
   text-align: center;
 }
@@ -41,3 +49,5 @@ body {
     overflow-x: scroll;
   }
 }
+/* --primary-normal: #202109;
+  --primary-dark: #635540de; */
