@@ -15,7 +15,7 @@
 .card p {
   font-size: 10px;
   font-weight: normal;
-  color: var(--primary-normal);
+  color: var(--primary-letter);
   text-align: center;
 }
 @media screen and (min-width: 810px) {
